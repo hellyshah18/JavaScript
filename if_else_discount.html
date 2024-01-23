@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="display"></div>
+    <input type="number" id="price" value=""/>
+    <button onclick="CalculateDiscountedPrice()">Calculate Discounted Price</button>
+    <script>
+        function CalculateDiscountedPrice(){
+            let price=document.getElementById("price").value 
+            let newprice= 0
+            let discount=0
+            if(price<=5000){
+                document.getElementById("display").innerHTML="No Discount, Sorry!"
+            }
+            else if(price>5000 && price<=10000){
+                discount= 0.05* price
+                newprice= price-discount
+                document.getElementById("display").innerHTML="5% Disount:" +newprice;
+            }
+            else if(price>10000 && price<=15000){
+                discount= 0.1* price
+                newprice= price-discount
+                document.getElementById("display").innerHTML="10% Disount:" +newprice;
+            }
+            else if(price>15000 && price<=20000){
+                discount= 0.5* price
+                newprice= price-discount
+                document.getElementById("display").innerHTML="15% Disount:" +newprice;
+            }
+            else{
+                discount= 0.2* price
+                newprice= price-discount
+                document.getElementById("display").innerHTML="Congratulations! You got 20% Disount:" +newprice;
+            }
+        }
+    </script>
+</body>
+</html>
