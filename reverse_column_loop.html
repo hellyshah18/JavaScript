@@ -9,15 +9,16 @@
     <div id="display"></div>
     <script>
         
-        for(let row=1;row<=4;row=row+1){
+        for(let row=4;row>=1;row=row-1){
             let str = '';
-            for (column=1; column<=row;column= column+1)
-            {
-                str+= column;
+            for (column=row; column>=1;column= column-1){  
+                str+=column;
                 
             }
-            document.getElementById("display").innerHTML+= str + "<br>";
+            document.getElementById("display").innerHTML+= str+"<br>";
+           
         }
+       
     </script>
 </body>
-</html>
+</html> 
