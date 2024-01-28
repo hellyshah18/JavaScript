@@ -1,116 +1,215 @@
 const products = [
   {
-    id: 'rec43w3ipXvP28vog',
-    title: 'high-back bench',
-    company: 'ikea',
-    image:
-      'https://dl.airtable.com/.attachments/14ac9e946e1a02eb9ce7d632c83f742f/4fd98e64/product-1.jpeg',
-    price: 9.99,
+    "product_id": 1,
+    "name": "Smartphone",
+    "description": "High-end smartphone with advanced features.",
+    "price": 599.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/smartphone.jpg",
+    "discount": 10,
+    "availability": true,
+    "brand": "BrandX",
+    "category": "Electronics",
+    "rating": 4.5,
+    "reviews": [
+      {
+        "user_id": 1,
+        "rating": 5,
+        "comment": "Great phone with a superb camera!"
+      },
+      {
+        "user_id": 2,
+        "rating": 4,
+        "comment": "Good performance, but the battery life could be better."
+      }
+    ]
   },
   {
-    id: 'rec4f2RIftFCb7aHh',
-    title: 'albany table',
-    company: 'marcos',
-    image:
-      'https://dl.airtable.com/.attachments/f3450755e165557344f7d6433242431e/93533098/product-1.jpeg',
-    price: 79.99,
+    "product_id": 2,
+    "name": "Laptop",
+    "description": "Powerful laptop for work and gaming.",
+    "price": 999.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/laptop.jpg",
+    "discount": 5,
+    "availability": true,
+    "brand": "BrandY",
+    "category": "Electronics",
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user_id": 3,
+        "rating": 5,
+        "comment": "Excellent laptop for gaming and work tasks."
+      },
+      {
+        "user_id": 4,
+        "rating": 4,
+        "comment": "Good value for the price."
+      }
+    ]
   },
   {
-    id: 'rec4f2RIftFCb7aHh',
-    title: 'albany table',
-    company: 'marcos',
-    image:
-      'https://dl.airtable.com/.attachments/f3450755e165557344f7d6433242431e/93533098/product-1.jpeg',
-    price: 788.99,
+    "product_id": 3,
+    "name": "Wireless Headphones",
+    "description": "Premium wireless headphones with noise-cancellation.",
+    "price": 149.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/headphones.jpg",
+    "discount": 15,
+    "availability": true,
+    "brand": "SoundMasters",
+    "category": "Electronics",
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user_id": 5,
+        "rating": 5,
+        "comment": "Top-notch sound quality and comfort."
+      },
+      {
+        "user_id": 6,
+        "rating": 4,
+        "comment": "Impressive noise-cancellation, but a bit pricey."
+      }
+    ]
   },
   {
-    id: 'rec4f2RIftFCb7aHh',
-    title: 'albany table',
-    company: 'marcos',
-    image:
-      'https://dl.airtable.com/.attachments/f3450755e165557344f7d6433242431e/93533098/product-1.jpeg',
-    price: 1279.99,
+    "product_id": 4,
+    "name": "Smartwatch",
+    "description": "Feature-packed smartwatch with fitness tracking.",
+    "price": 199.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/smartwatch.jpg",
+    "discount": 10,
+    "availability": true,
+    "brand": "TechWear",
+    "category": "Wearables",
+    "rating": 4.6,
+    "reviews": [
+      {
+        "user_id": 7,
+        "rating": 4,
+        "comment": "Great value for the features it offers."
+      },
+      {
+        "user_id": 8,
+        "rating": 5,
+        "comment": "Sleek design and accurate fitness tracking."
+      }
+    ]
   },
   {
-    id: 'rec8kkCmSiMkbkiko',
-    title: 'accent chair',
-    company: 'caressa',
-    image:
-      'https://dl.airtable.com/.attachments/f292eaec4fea8a791b037c759ae559c9/2d5e34d5/product-4.jpeg',
-    price: 25.99,
+    "product_id": 5,
+    "name": "Professional DSLR Camera",
+    "description": "High-quality DSLR camera for photography enthusiasts.",
+    "price": 499.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/camera.jpg",
+    "discount": 5,
+    "availability": true,
+    "brand": "PhotoPro",
+    "category": "Cameras",
+    "rating": 4.9,
+    "reviews": [
+      {
+        "user_id": 9,
+        "rating": 5,
+        "comment": "Exceptional image quality and versatility."
+      },
+      {
+        "user_id": 10,
+        "rating": 4,
+        "comment": "A bit heavy, but the results are worth it."
+      }
+    ]
   },
   {
-    id: 'recBohCqQsot4Q4II',
-    title: 'wooden table',
-    company: 'caressa',
-    image:
-      'https://dl.airtable.com/.attachments/5b3ad76dfd6ca5e31810cb99141c7ede/69829b2f/pexels-dominika-roseclay-1139785.jpg',
-    price: 45.99,
+    "product_id": 6,
+    "name": "Smart TV",
+    "description": "High-definition smart TV with built-in streaming apps.",
+    "price": 799.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/tv.jpg",
+    "discount": 8,
+    "availability": true,
+    "brand": "ViewTech",
+    "category": "Electronics",
+    "rating": 4.7,
+    "reviews": [
+      {
+        "user_id": 11,
+        "rating": 5,
+        "comment": "Stunning picture quality and user-friendly interface."
+      },
+      {
+        "user_id": 12,
+        "rating": 4,
+        "comment": "A great addition to our home entertainment setup."
+      }
+    ]
   },
   {
-    id: 'recDG1JRZnbpRHpoy',
-    title: 'dining table',
-    company: 'caressa',
-    image:
-      'https://dl.airtable.com/.attachments/06bbede65bd09196b4a81a8e7b59e683/8af0aeb5/product-8.jpg',
-    price: 6.99,
+    "product_id": 7,
+    "name": "Tablet",
+    "description": "Compact tablet for productivity and entertainment.",
+    "price": 299.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/tablet.jpg",
+    "discount": 12,
+    "availability": true,
+    "brand": "TabTech",
+    "category": "Electronics",
+    "rating": 4.4,
+    "reviews": [
+      {
+        "user_id": 13,
+        "rating": 4,
+        "comment": "Good value for the price, but the battery life could be better."
+      },
+      {
+        "user_id": 14,
+        "rating": 5,
+        "comment": "Ideal for both work and entertainment on the go."
+      }
+    ]
   },
   {
-    id: 'recNWGyP7kjFhSqw3',
-    title: 'sofa set',
-    company: 'liddy',
-    image:
-      'https://dl.airtable.com/.attachments/443aa7884207dae7c3cc127262a2f993/d4f33110/product-1.jpeg',
-    price: 69.99,
+    "product_id": 8,
+    "name": "Gaming Console",
+    "description": "Next-gen gaming console for immersive gaming experiences.",
+    "price": 399.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/console.jpg",
+    "discount": 10,
+    "availability": true,
+    "brand": "GameX",
+    "category": "Gaming",
+    "rating": 4.8,
+    "reviews": [
+      {
+        "user_id": 15,
+        "rating": 5,
+        "comment": "Incredible gaming performance and graphics."
+      },
+      {
+        "user_id": 16,
+        "rating": 4,
+        "comment": "A must-have for gaming enthusiasts."
+      }
+    ]
   },
   {
-    id: 'recZEougL5bbY4AEx',
-    title: 'modern bookshelf',
-    company: 'marcos',
-    image:
-      'https://dl.airtable.com/.attachments/a889b1928b134c2ca0b5bbca32ea9abf/65c8a9a6/product-7.jpg',
-    price: 8.99,
-  },
-  {
-    id: 'recjMK1jgTb2ld7sv',
-    title: 'emperor bed',
-    company: 'liddy',
-    image:
-      'https://dl.airtable.com/.attachments/10fdf29ae17f2d1f98770ae42584d021/82b9403f/product-6.jpg',
-    price: 21.99,
-  },
-  {
-    id: 'recmg2a1ctaEJNZhu',
-    title: 'utopia sofa',
-    company: 'marcos',
-    image:
-      'https://dl.airtable.com/.attachments/6ac7f7b55d505057317534722e5a9f03/9183491e/product-3.jpg',
-    price: 39.95,
-  },
-  {
-    id: 'recvKMNR3YFw0bEt3',
-    title: 'entertainment center',
-    company: 'liddy',
-    image:
-      'https://dl.airtable.com/.attachments/da5e17fd71f50578d525dd5f596e407e/d5e88ac8/product-2.jpg',
-    price: 29.98,
-  },
-  {
-    id: 'recxaXFy5IW539sgM',
-    title: 'albany sectional',
-    company: 'ikea',
-    image:
-      'https://dl.airtable.com/.attachments/05ecddf7ac8d581ecc3f7922415e7907/a4242abc/product-1.jpeg',
-    price: 10.99,
-  },
-  {
-    id: 'recyqtRglGNGtO4Q5',
-    title: 'leather sofa',
-    company: 'liddy',
-    image:
-      'https://dl.airtable.com/.attachments/3245c726ee77d73702ba8c3310639727/f000842b/product-5.jpg',
-    price: 9.99,
-  },
+    "product_id": 9,
+    "name": "Energy-Efficient Refrigerator",
+    "description": "Modern refrigerator with energy-saving features.",
+    "price": 599.99,
+    "unit": "Piece",
+    "image": "https://example.com/images/refrigerator.jpg",
+    "discount": 5,
+    "availability": true,
+    "brand": "CoolTech",
+    "category": "Appliances",
+    "rating": 4.6
+  } 
 ];
-
-
