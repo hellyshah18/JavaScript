@@ -5,7 +5,7 @@ const products = [
     "description": "High-end smartphone with advanced features.",
     "price": 599.99,
     "unit": "Piece",
-    "image": "https://example.com/images/smartphone.jpg",
+    "image": "./images/smartphone.png",
     "discount": 10,
     "availability": true,
     "brand": "BrandX",
@@ -28,9 +28,10 @@ const products = [
     "product_id": 2,
     "name": "Laptop",
     "description": "Powerful laptop for work and gaming.",
+    
     "price": 999.99,
     "unit": "Piece",
-    "image": "https://example.com/images/laptop.jpg",
+    "image": "./images/laptop.jpeg",
     "discount": 5,
     "availability": true,
     "brand": "BrandY",
@@ -55,7 +56,7 @@ const products = [
     "description": "Premium wireless headphones with noise-cancellation.",
     "price": 149.99,
     "unit": "Piece",
-    "image": "https://example.com/images/headphones.jpg",
+    "image": "./images/Headphones.jpeg",
     "discount": 15,
     "availability": true,
     "brand": "SoundMasters",
@@ -80,7 +81,7 @@ const products = [
     "description": "Feature-packed smartwatch with fitness tracking.",
     "price": 199.99,
     "unit": "Piece",
-    "image": "https://example.com/images/smartwatch.jpg",
+    "image": "./images/watch.jpeg",
     "discount": 10,
     "availability": true,
     "brand": "TechWear",
@@ -105,7 +106,7 @@ const products = [
     "description": "High-quality DSLR camera for photography enthusiasts.",
     "price": 499.99,
     "unit": "Piece",
-    "image": "https://example.com/images/camera.jpg",
+    "image": "./images/camera.jpeg",
     "discount": 5,
     "availability": true,
     "brand": "PhotoPro",
@@ -130,7 +131,7 @@ const products = [
     "description": "High-definition smart TV with built-in streaming apps.",
     "price": 799.99,
     "unit": "Piece",
-    "image": "https://example.com/images/tv.jpg",
+    "image": "./images/tv.jpeg",
     "discount": 8,
     "availability": true,
     "brand": "ViewTech",
@@ -155,7 +156,7 @@ const products = [
     "description": "Compact tablet for productivity and entertainment.",
     "price": 299.99,
     "unit": "Piece",
-    "image": "https://example.com/images/tablet.jpg",
+    "image": "./images/tablet.jpeg",
     "discount": 12,
     "availability": true,
     "brand": "TabTech",
@@ -180,7 +181,7 @@ const products = [
     "description": "Next-gen gaming console for immersive gaming experiences.",
     "price": 399.99,
     "unit": "Piece",
-    "image": "https://example.com/images/console.jpg",
+    "image": "./images/game.jpeg",
     "discount": 10,
     "availability": true,
     "brand": "GameX",
@@ -205,7 +206,7 @@ const products = [
     "description": "Modern refrigerator with energy-saving features.",
     "price": 599.99,
     "unit": "Piece",
-    "image": "https://example.com/images/refrigerator.jpg",
+    "image": "./images/refri.jpeg",
     "discount": 5,
     "availability": true,
     "brand": "CoolTech",
@@ -213,3 +214,51 @@ const products = [
     "rating": 4.6
   } 
 ];
+function display(mydata)
+  {
+    let mynewproducts = mydata.map(function(v,i) {
+  
+  
+      return ` <article class="product-item">
+      <img src="${v.image}" alt="product item" class="photo" />
+      <div class="item-info">
+        <header>
+          <h4>${v.name}</h4>
+          <h4 class="price">${v.price}</h4>
+        </header>
+        <p class="rating">${v.rating} </p>
+        <p class="item-text">
+         ${v.description}
+        </p>
+      </div>
+    </article>`
+    
+    })
+  
+    document.getElementById("products").innerHTML = mynewproducts.join("");
+  
+  }
+  display(products);
+
+  function searchValue()
+  {
+    let searchTerm = document.getElementById("searchTerm").
+    value.toLowerCase();
+  
+    let  p = products.filter(function(v) {
+  
+     return  v.name.toLowerCase().includes(searchTerm);
+    });
+  
+    display(p);
+  
+  }
+  function sortdata(props,order){
+    products.sort(function(a,b) {
+    if(order == "DEC" )
+      return b[props] - a[props];
+    else
+      return a[props] - b[props];
+    })
+     display(products);
+     }
