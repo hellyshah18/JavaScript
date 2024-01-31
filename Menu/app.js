@@ -82,8 +82,6 @@ const menu = [
 ];
 
 
-
-
 function display(mydata)
 {
   let mynewmenu = mydata.map(function(v,i) {
@@ -110,17 +108,6 @@ function display(mydata)
 
 
 display(menu);
-let mybutton = menu.map(function(v,i) {
-
-  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`
-})
-
-console.log('first', mybutton);
-
-
-document.getElementById("btn").innerHTML = mybutton.join("");
-
-
 
 function searchValue()
 {
@@ -136,6 +123,22 @@ function searchValue()
 
   console.log(p);
 }
+display(menu);
+
+let categories = menu.reduce(function(pre,v){
+  if(pre.includes(v.category)== false){
+    pre.push(v.category);
+  }
+  return pre;
+},[])
+categories.push("All");
+
+let mybutton = menu.map(function(v,i) {
+  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`
+})
+console.log('first', mybutton);
+document.getElementById("btn").innerHTML = mybutton.join("");
+
 
 function filterByCategory(category)
 {
@@ -146,31 +149,17 @@ function filterByCategory(category)
 
   display(categoryfilters);
 }
-
-function pricehightolow()
-{
-  menu.sort(function(a,b) {
-
-    return b.price - a.price;
-
+function AddtoCart(index){
+  const selectedProduct =menu[index];
+  let productexist =cartitems.find(function(v){
+    return v.iem.id==selectedProduct.id;
   })
-
-  display(menu);
-
+  if(!productexist){
+    cartitems.push({item : selectedProduct, count:1});
+  }
+  
+  document.getElementById("count").innerHTML= cartitems.length
 }
-
-function pricelowtohigh()
-{
-  menu.sort(function(a,b) {
-
-    return a.price - b.price;
-
-  })
-
-  display(menu);
-
-}
-
  function sortdata(props,order)
  {
   
