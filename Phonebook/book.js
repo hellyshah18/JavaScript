@@ -1,7 +1,7 @@
 let people = [];
 let ind = -1;
 
-function AddItems() {
+function AddPeople() {
     const firstName = document.getElementById("firstname").value;
     const lastName = document.getElementById("lastname").value;
     const phoneNumber = document.getElementById("phonenumber").value;
@@ -18,7 +18,6 @@ function AddItems() {
         people[ind] = newPerson;
         ind = -1; // Reset the index after update
     }
-    
     display();
     clearForm();
 }
@@ -32,7 +31,7 @@ function display() {
             <button class="delete-btn" onclick="removeItems(${index})">Delete</button>
         </div>`;
     });
-    document.getElementById("peopleList").innerHTML = display.join(" ");
+    document.getElementById("peoplelist").innerHTML = display.join(" ");
 }
 
 function removeItems(index) {
