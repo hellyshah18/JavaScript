@@ -21,7 +21,7 @@ function AddItems(){
  function removeItems(index){
     items.splice(index,1);
     display();
- }
+ }     
  function EditItems(index){
     document.getElementById("grocery").value=items[index];
     ind= index;

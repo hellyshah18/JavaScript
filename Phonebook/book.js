@@ -24,7 +24,7 @@ function AddPeople() {
 
 function display() {
     let display = people.map(function (person, index) {
-        return `<div class="person">
+       return `<div class="person">
             <p>Name: ${person.firstName} ${person.lastName}</p>
             <p>Phone: ${person.phoneNumber}</p>
             <button class="edit-btn" onclick="EditItems(${index})">Edit</button>
