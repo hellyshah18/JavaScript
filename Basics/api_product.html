@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="display" > </table>
+
+    <div id="disbut"></div>
+    <select  onchange="managePagesize()" id="pageSize" >
+         <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+    </select>
+
+    <script>
+                let data = [];
+
+        fetch("https://jsonplaceholder.typicode.com/albums").
+        then(function(value){
+
+           
+            return value.json()
+        }).then(function(value){
+
+            data=value;
+            pagination(1);
+            displayButton(value.length/ document.getElementById("pageSize").value );
+            console.log(value);
+        })
+
+
+        function managePagesize()
+        {
+            pagination(1);
+            displayButton(data.length/document.getElementById("pageSize").value );
+        }
+
+        function displayButton(len)
+        {
+            document.getElementById("disbut").innerHTML="";
+            for(let i=1;i<=len;i++)
+            {
+                document.getElementById("disbut").innerHTML +=
+                 `<button onclick="pagination(${i})">${i}</button>  `
+            }
+        }
+
+
+
+
+        function display(data)
+        {
+            let p = data.map(function(value){
+                return `<tr><td>${value.userId}</td><td>${value.id}
+                    </td><td>${value.title}</td></tr>`
+            });
+            document.getElementById("display").innerHTML = p.join(" ");
+        }   
+        function pagination(pagenumber) {
+            let start= (pagenumber-1)*document.getElementById("pageSize").value;
+            let end = (start)+document.getElementById("pageSize").value
+           let p = data.slice(start,end);
+           display(p);
+          }
+
+    </script>
+    
+</body>
+</html>
