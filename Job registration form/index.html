@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="handlesubmit(event)">
+        <label>email</label>
+        <input type="text" name="email" id="email"/>
+        <label>password</label>
+        <input type="password" name="password" id="password"/>
+        <label>bio</label>
+        <input type="text" name="bio" id="bio"/>
+        <label>contactNumber</label>
+        <input type="tel" name="contactNumber" id="contactNumber"/>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const handlesubmit = (e)=>{
+            e.preventDefault();
+            let obj= {};
+            document.querySelectorAll("input").forEach((element)=>{
+                obj[element.name]=element.value;
+            });
+            console.log(obj);
+        }
+    </script>
+</body>
+</html>

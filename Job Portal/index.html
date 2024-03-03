@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    
+</head>
+<body>
+    <form>
+        <div id="basic-information">
+            <h2 id="basic-information-heading"><u>Basic Informtion</u></h2>
+            <label>Name</label>
+            <input type="text" name="name" id="name"/>
+            <label>Email</label>
+            <input type="text" name="email" id="email"/>
+            <label>Password</label>
+            <input type="password" name="password" id="password"/>
+            <label>Contact Number</label>
+            <input type="tel" name="contactNumber" id="contactNumber"/>
+        </div>
+        <div id="education">
+            <div id="education-info">
+                <h2 id="education-heading"><u>Education</u></h2>
+                    <label>Institution Name</label>
+                    <input type="text" name="insti-name" />
+                    <label>Start Date</label>
+                    <input type="date" name="start-date" />
+                    <label>End Date</label>
+                    <input type="date" name="end-date" />
+                    <button onclick="addMoreEducation()">Add More Education</button>
+            </div>
+        </div>
+        <div id="resume">
+            <h2 id="resume-heading"><u>Resume</u></h2>
+            <label for="resume">Upload Resume</label>
+            <input type="file" name="resume-doc" id="resume-doc" accept=".pdf, .docx" />
+        </div>
+        <button id="submit" type="submit">Submit</button>
+    </form>
+    <script>
+         let addMoreEducation=()=>{
+            let edu= document.getElementById("education-info").cloneNode(true);
+            let p=edu.getElementsByTagName("input");
+            let p1=document.createElement("button");
+            p1.innerHTML="Remove";
+            p1.onclick=(e)=>{
+                removeElement(e);
+            };
+            for (let index = 0; index < p.length; index++) {
+                p[index].value=""; 
+            };
+            edu.appendChild(p1);
+            document.getElementById("education").appendChild(edu);
+
+        };
+        const removeElement=(p)=>{
+            p.target.parentElement.remove();
+        };
+        
+
+    </script>
+</body>
+</html>
