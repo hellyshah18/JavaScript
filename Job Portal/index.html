@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal</title>
-    
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <form>
@@ -21,7 +21,7 @@
         </div>
         <div id="education">
             <div id="education-info">
-                <h2 id="education-heading"><u>Education</u></h2>
+                <div id="education-heading"><u><h2></h2>Education</u></h2>
                     <label>Institution Name</label>
                     <input type="text" name="insti-name" />
                     <label>Start Date</label>
@@ -29,7 +29,14 @@
                     <label>End Date</label>
                     <input type="date" name="end-date" />
                     <button onclick="addMoreEducation()">Add More Education</button>
+                 </div>
             </div>
+        </div>
+        <div id="skills">
+            <div id="skills-heading"><u>Skills</u>
+                <input type="text" name="skill" class="skill-input" required>
+                <button type="button" onclick="addMoreSkill()">Add More Skill</button>
+            </div>    
         </div>
         <div id="resume">
             <h2 id="resume-heading"><u>Resume</u></h2>
@@ -39,7 +46,8 @@
         <button id="submit" type="submit">Submit</button>
     </form>
     <script>
-         let addMoreEducation=()=>{
+         
+        let addMoreEducation=()=>{
             let edu= document.getElementById("education-info").cloneNode(true);
             let p=edu.getElementsByTagName("input");
             let p1=document.createElement("button");
@@ -47,17 +55,15 @@
             p1.onclick=(e)=>{
                 removeElement(e);
             };
-            for (let index = 0; index < p.length; index++) {
-                p[index].value=""; 
+            for(let index = 0; index < p.length; index++) {
+                p[index].value="";
             };
             edu.appendChild(p1);
             document.getElementById("education").appendChild(edu);
-
-        };
+        }
         const removeElement=(p)=>{
-            p.target.parentElement.remove();
+            p.target.parentElement.remove()
         };
-        
 
     </script>
 </body>

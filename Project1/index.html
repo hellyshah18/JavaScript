@@ -65,3 +65,24 @@
     </script>
 </body>
 </html>
+
+
+
+
+let addMoreEducation=()=>{
+    let edu= document.getElementById("education-info").cloneNode(true);
+    let p=edu.getElementsByTagName("input");
+    let p1=document.createElement("button");
+    p1.innerHTML="Remove";
+    p1.onclick=(e)=>{
+        removeElement(e);
+    };
+    for (let index = 0; index < p.length; index++) {
+        p[index].value=""; 
+    };
+    edu.appendChild(p1);
+    document.getElementById("education").appendChild(edu);
+
+};
+const removeElement=(p)=>{
+    p.target.parentElement.remove();};
