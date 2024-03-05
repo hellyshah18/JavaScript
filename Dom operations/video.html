@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <video id="myvideo" controls autoplay src="https://www.w3schools.com/tags/mov_bbb.mp4"></video>
+ 
+    <script>
+        let video = document.getElementById("myvideo");
+        let storedTimestamp = localStorage.getItem("videoTimestamp");
+        function getCurrentTimestamp() {
+            var currentTimestamp = video.currentTime;
+            localStorage.setItem("videoTimestamp", currentTimestamp);
+        }
+
+        video.onloadedmetadata = startPlaying;
+
+        function startPlaying() {
+            if (storedTimestamp !== null) {
+                video.currentTime = parseFloat(storedTimestamp);
+            }
+        }
+
+        video.onpause = function() {
+            getCurrentTimestamp();
+           
+        };
+    </script>
+</body>
+</html>
