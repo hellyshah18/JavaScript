@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="welcome.html">
+      <label>Username</label>
+      <input id="username" type="text" />
+      <label>Password</label>
+      <input id="password" type="password" />
+      <button onclick="getCookies()">Submit</button>
+    </form>
+    <script>
+        let p=document.cookie;
+        function getCookies(){
+        
+      document.cookie=document.getElementById("username").value;
+      
+      
+        }
+
+    
+    </script>
+  </body>
+</html>
