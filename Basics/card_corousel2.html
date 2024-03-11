@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="carousel_products"></div>
+    <div id="card_products"></div>
+
+    <script>
+      function fetchData(url, dis) {
+        fetch(url)
+          .then((y) => y.json())
+          .then((y) => {
+            dis(y);
+            console.log(y);
+          });
+      }
+
+      const displayCard = (data) => {
+        let p = data.map((v) => {
+          return `<div class="card" style="width: 18rem;">
+        <img src="${v.image}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${v.title}</h5>
+          <p class="card-text">${v.description}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>`;
+        });
+
+        document.getElementById("card_products").innerHTML = p.join(" ");
+      };
+
+      const displayCorousel = (data) => {
+        let p = data.map((v) => {
+          const imageUrl = v.image; // Assuming single image URL
+          return `<div class="carousel slide" data-bs-ride="carousel">  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="${imageUrl}" class="d-block w-100" alt="${v.title}">
+    </div>
+    </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</div>`;
+        });
+
+        document.getElementById("carousel_products").innerHTML = p.join(" ");
+      };
+
+      fetchData("https://fakestoreapi.com/products", displayCard);
+      fetchData("https://api.escuelajs.co/api/v1/products", displayCorousel);
+
+      // Initialize carousels after data is fetched
+      const carousels = document.querySelectorAll('.carousel');
+      carousels.forEach(carousel => new bootstrap.Carousel(carousel));
+    </script>
+  </body>
+</html>

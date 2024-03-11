@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <table id="comments"></table>
+        <table id="posts"></table>
+
+
+    <script>
+
+        function fetchData(url,dis)
+        {
+            fetch(url).then(y=>y.json())
+            .then(y=>{
+
+                dis(y);
+                console.log(y);
+            })
+
+        }
+
+
+    
+
+        const displayPost= (data)=>{
+
+            let p = data.map((v)=>{
+
+                return (`<tr><td>${v.id}</td></tr>`)
+            })
+
+            document.getElementById("comments").innerHTML= p.join(" ");
+        }
+
+        const displayComments= (data)=>{
+
+            let p = data.map((v)=>{
+
+return (`<tr><td>${v.body}</td></tr>`)
+})
+
+document.getElementById("posts").innerHTML= p.join(" ");
+        }
+
+        fetchData("https://jsonplaceholder.typicode.com/posts",displayPost)
+        fetchData("https://jsonplaceholder.typicode.com/comments",displayComments)
+
+
+    </script>
+
+</body>
+</html>
