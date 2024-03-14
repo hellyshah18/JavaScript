@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="myfile" multiple onchange="handleFile()" />
+
+    <img id="image"  />
+
+    <script>
+      const toBase64 = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+        });
+
+      function handleFile() {
+        const fileInput = document.querySelector("#myfile");
+        const imageElement = document.getElementById("image");
+
+        for (let index = 0; index < files.length; index++) {
+            const file = fileInput.files[index];
+      }
+      try {
+          toBase64(file).then((y) => {
+            imageElement.src=y;
+          });
+        } catch (error) {
+          console.error(error);
+          return;
+        }
+        
+    }
+    </script>
+  </body>
+</html>

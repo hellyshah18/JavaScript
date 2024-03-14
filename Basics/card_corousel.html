@@ -18,7 +18,7 @@
   </head>
   <body>
     <div id="carousel_products"></div>
-    <div id="card_products"></div>
+    <!-- <div id="card_products"></div> -->
 
     <script>
       function fetchData(url, dis) {
@@ -48,12 +48,12 @@
       const displayCorousel = (data) => {
         let p = data.map((v) => {
           let y = v.map((value, index) => {
-            return `<img src="${value.images[0]}" class="d-block w-100" alt="image">`;
+            return `<img src="${value.image[0]}" class="d-block w-100" alt="image">`;
           });
           return `<div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="${v.images}" class="d-block w-100" alt="image">
+      <img src="${v.image}" class="d-block w-100" alt="image">
       <p>${v.title}</p>
     </div>
     <div class="carousel-item">
@@ -80,7 +80,9 @@
       };
 
       fetchData("https://fakestoreapi.com/products", displayCard);
-      fetchData("https://api.escuelajs.co/api/v1/products", displayCorousel);
+      // fetchData("https://api.escuelajs.co/api/v1/products", displayCorousel);
+      fetchData("https://fakestoreapi.com/products", displayCorousel);
+      
     </script>
   </body>
 </html>

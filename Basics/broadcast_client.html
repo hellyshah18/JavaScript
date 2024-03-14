@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>client</title>
+  </head>
+  <body>
+    <input type="text" id="sendmasaage" />
+    <button id="btn" onclick="sendmassage()">send</button>
+    <p id="show"></p>
+
+    <script>
+      const boradcast = new BroadcastChannel("NewChannel");
+
+      const sendmassage = () => {
+        let massage = document.getElementById("sendmasaage").value;
+        boradcast.postMessage(massage);
+      };
+      const boradcast2 = new BroadcastChannel("receive");
+      boradcast2.onmessage = (v) => {
+        console.log(v.data);
+
+        document.getElementById("show").innerHTML = v.data;
+      };
+    </script>
+  </body>
+</html>

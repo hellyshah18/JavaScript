@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form>
+      <label>Enter Name</label>
+      <input id="name" type="text" pattern="[A-Za-z]{15}" />
+      <label>Enter Phone Number</label>
+      <input id="phone" type="number" maxlength="10" />
+      <label>Enter Age</label>
+      <input id="age" type="number" min="18" max="40" />
+      <label>Enter Email</label>
+      <input id="email" type="email"/>
+      <label>Enter Password</label>
+      <input id="password" type="password" min="100" />
+    </form>
+
+    <button onclick="myFunction()">OK</button>
+
+    <p id="demo"></p>
+
+    <script>
+      function myFunction() {
+        let text;
+        let id;
+
+        if ((id = "age")) {
+          if (document.getElementById("age").validity.rangeUnderflow) {
+            text = "Age is below 18";
+          } else if(document.getElementById("age").validity.rangeOverflow) {
+            text = "Age is above 40";
+          } else {
+            text = "Valid Age";
+          }
+          document.getElementById("demo").innerHTML = text;
+        }
+
+        if ((id = "name")) {
+          if (document.getElementById("name").validity.patternMismatch) {
+            text = "Name length exceeds 15 characters";
+            document.getElementById("demo").innerHTML = text;
+          }
+        }
+
+        if ((id = "phone")) {
+          if (document.getElementById("phone").validity.tooLong) {
+            text = "Phone Number length exceeds 10 characters";
+            document.getElementById("demo").innerHTML = text;
+          }
+        }
+
+        if ((id = "email")) {
+          if (document.getElementById("email").validity.typeMismatch) {
+            text = "Email Format Invalid";
+            document.getElementById("demo").innerHTML = text;
+          }
+        }
+
+        if ((id = "password")) {
+          if (document.getElementById("password").validity.valueMissing) {
+            text = "Password Value Missing";
+            document.getElementById("demo").innerHTML = text;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
