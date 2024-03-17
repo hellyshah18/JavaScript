@@ -3,15 +3,15 @@
   <body>
     <form>
       <label>Enter Name</label>
-      <input id="name" type="text" pattern="[A-Za-z]{15}" />
+      <input id="name" type="text" pattern="[A-Za-z]{0,15}"  />
       <label>Enter Phone Number</label>
-      <input id="phone" type="tel" />
+      <input id="phone" type="tel" maxlength="10" />
       <label>Enter Age</label>
       <input id="age" type="number" min="18" max="40" />
       <label>Enter Email</label>
-      <input id="email" type="email"/>
+      <input id="email" type="email" />
       <label>Enter Password</label>
-      <input id="password" type="password" min="100" required />
+      <input id="password" type="password" required />
     </form>
 
     <button onclick="myFunction()">OK</button>
@@ -20,13 +20,16 @@
 
     <script>
       function myFunction() {
-        let text;
+        let text=null;
         if (document.getElementById("age").validity.rangeUnderflow) {
             text += "Age is below 18           ";
           }
           else if(document.getElementById("age").validity.rangeOverflow) {
             text = "Age is above 40          ";
           } 
+          else if (document.getElementById("age").validity.valueMissing){
+                text+="Age Value Missing      "
+            }
           else {
             text+= "Valid Age";
           };
