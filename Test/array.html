@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let array = [2, 3, 4, 5, 4, 5];
+
+      let num = array.reduce((p,value) => {
+        if (!p.includes(value)) {
+          p.push(value);
+        }
+
+        return p;
+      }, []);
+
+      let newArray = num.reduce((pre,value) => {
+        if (!pre.includes(value)) {
+          pre.pop(value);
+        }
+
+        return pre;
+      });
+
+      console.log(newArray);
+    </script>
+  </body>
+</html>

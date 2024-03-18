@@ -81,12 +81,8 @@ const menu = [
   },
 ];
 
-
-function display(mydata)
-{
-  let mynewmenu = mydata.map(function(v,i) {
-
-
+function display(mydata) {
+  let mynewmenu = mydata.map(function (v, i) {
     return ` <article class="menu-item">
     <img src="${v.img}" alt="menu item" class="photo" />
     <div class="item-info">
@@ -98,25 +94,19 @@ function display(mydata)
        ${v.desc}
       </p>
     </div>
-  </article>`
-  
-  })
+  </article>`;
+  });
 
   document.getElementById("menu").innerHTML = mynewmenu.join("");
-
 }
-
 
 display(menu);
 
-function searchValue()
-{
-  let searchTerm = document.getElementById("searchTerm").
-  value.toLowerCase();
+function searchValue() {
+  let searchTerm = document.getElementById("searchTerm").value.toLowerCase();
 
-  let  p = menu.filter(function(v) {
-
-   return  v.title.toLowerCase().includes(searchTerm);
+  let p = menu.filter(function (v) {
+    return v.title.toLowerCase().includes(searchTerm);
   });
 
   display(p);
@@ -125,55 +115,43 @@ function searchValue()
 }
 display(menu);
 
-let categories = menu.reduce(function(pre,v){
-  if(pre.includes(v.category)== false){
+let categories = menu.reduce(function (pre, v) {
+  if (pre.includes(v.category) == false) {
     pre.push(v.category);
   }
   return pre;
-},[])
+}, []);
 categories.push("All");
 
-let mybutton = menu.map(function(v,i) {
-  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`
-})
-console.log('first', mybutton);
+let mybutton = menu.map(function (v, i) {
+  return `  <button type="button" class="filter-btn" data-id="all" onclick="filterByCategory('${v.category}')">${v.category}</button>`;
+});
+console.log("first", mybutton);
 document.getElementById("btn").innerHTML = mybutton.join("");
 
-
-function filterByCategory(category)
-{
-  let categoryfilters = menu.filter(function(v) {
-
-   return v.category == category;
-  })
+function filterByCategory(category) {
+  let categoryfilters = menu.filter(function (v) {
+    return v.category == category;
+  });
 
   display(categoryfilters);
 }
-function AddtoCart(index){
-  const selectedProduct =menu[index];
-  let productexist =cartitems.find(function(v){
-    return v.iem.id==selectedProduct.id;
-  })
-  if(!productexist){
-    cartitems.push({item : selectedProduct, count:1});
+function AddtoCart(index) {
+  const selectedProduct = menu[index];
+  let productexist = cartitems.find(function (v) {
+    return v.item.id == selectedProduct.id;
+  });
+  if (!productexist) {
+    cartitems.push({ item: selectedProduct, count: 1 });
   }
-  
-  document.getElementById("count").innerHTML= cartitems.length
+
+  document.getElementById("count").innerHTML = cartitems.length;
 }
- function sortdata(props,order)
- {
-  
-   menu.sort(function(a,b) {
+function sortdata(props, order) {
+  menu.sort(function (a, b) {
+    if (order == "DEC") return b[props] - a[props];
+    else return a[props] - b[props];
+  });
 
-     if(order == "DEC" )
-     return b[props] - a[props];
-     else
-    
-     return a[props] - b[props];
-    
-
-   })
-
-   display(menu);
-
- }
+  display(menu);
+}
