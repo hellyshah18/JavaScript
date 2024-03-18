@@ -8,7 +8,7 @@
   <body>
     <script>
       let array = [2, 3, 4, 5, 4, 5];
-
+      let newArray=[];
       let num = array.reduce((p,value) => {
         if (!p.includes(value)) {
           p.push(value);
@@ -16,14 +16,9 @@
 
         return p;
       }, []);
-
-      let newArray = num.reduce((pre,value) => {
-        if (!pre.includes(value)) {
-          pre.pop(value);
-        }
-
-        return pre;
-      });
+    if(array.includes(num.value)){
+    newArray.push(num.value);
+    }
 
       console.log(newArray);
     </script>
