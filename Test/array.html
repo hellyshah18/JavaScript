@@ -11,16 +11,14 @@
       let newArray=[];
       let num = array.reduce((p,value) => {
         if (!p.includes(value)) {
-          p.push(value);
+          p.push(value)
+        }else{
+          newArray.push(value)
         }
 
         return p;
       }, []);
-    if(array.includes(num.value)){
-    newArray.push(num.value);
-    }
-
-      console.log(newArray);
+      console.log(newArray)
     </script>
   </body>
 </html>
