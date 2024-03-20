@@ -39,13 +39,13 @@ input, button {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #b66ac6;
     color: #fff;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #eabbe9;
 }
 
 input[type="file"] {
