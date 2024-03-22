@@ -17,14 +17,11 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Login</a>
-            </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up as Recruiter</a>
+                <a class="nav-link" href="recruiter.html">Sign Up as Recruiter</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up as Applicant</a>
+                <a class="nav-link" href="applicant.html">Sign Up as Applicant</a>
             </li>
         </div>
       </nav>
@@ -45,6 +42,9 @@
         email:document.getElementById("email").value,
         password:document.getElementById("password").value,
         }
+        let a= JSON.stringify(obj);
+        console.log(a);
+        localStorage.setItem("LoginInfo",a);
 
         fetch("http://localhost:4444/auth/login",{
             method : "POST",
@@ -52,11 +52,16 @@
                 'Content-Type':"application/json"
             },
             body: JSON.stringify(obj)
-        }).then(y=>{
-            location.href="home.html"
+        }).then(y=> y.json()).then(y=>{
+          if(y.type)
+                {
+                
+                localStorage.setItem("token", JSON.stringify(y));
+                location.href = 'home.html'
+                
+                }
         })
        } 
-
     </script>
 </body>
 </html>

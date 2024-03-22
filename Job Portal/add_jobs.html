@@ -18,42 +18,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Add Jobs</a>
+                <a class="nav-link" href="myjobs.html">My Jobs</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="#">My Jobs</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="profile.html">Profile</a>
             </li>
         </div>
       </nav>
-    <form onsubmit="handlesubmit(event)">
+    <form>
         <label>Title</label>
         <input type="text" name="title" id="title"/>
         <label>Skills</label>
         <input type="text" name="skill" id="skill"/>
         <label>Job Type</label>
-        <select>
+        <select id="jobtype">
             <option>Full Time</option>
             <option>Part Time</option>
             <option>Work From Home</option>
         </select>
         <label>Duration</label>
-        <select>
-            <option>Flexible</option>
-            <option>1 Month</option>
-            <option>2 Months</option>
-            <option>3 Months</option>
-            <option>4 Months</option>
-            <option>5 Months</option>
-            <option>6 Months</option>
+        <select id="duration">
+            <option value="0">Flexible</option>
+            <option value="1">1 Month</option>
+            <option value="2">2 Month</option>
+            <option value="3">3 Month</option>
+            <option value="4">4 Month</option>
+            <option value="5">5 Month</option>
+            <option value="6">6 Month</option>
         </select>
         <label>Salary</label>
         <input type="number" name="salary" id="salary"/>
@@ -63,17 +57,43 @@
         <input type="number" name="max_applicants" id="max_applicants"/>
         <label>Position Available</label>
         <input type="number" name="position_available" id="position_available"/>
-        <button type="submit">Submit</button>
+        <label>Date Of Posting</label>
+        <input type="date" name="date_of_posting" id="date_of_posting"/>
+        <label>Rating</label>
+        <input type="number" name="rating" id="rating"/>
+        <button type="submit" onclick="addJobs(event)">Submit</button>
     </form>
     <script>
-        const handlesubmit = (e)=>{
+        
+        const addJobs=(e)=> {
             e.preventDefault();
-            let obj= {};
-            document.querySelectorAll("input").forEach((element)=>{
-                obj[element.name]=element.value;
-            });
-            console.log(obj);
+            const obj={
+                title: document.getElementById("title").value,
+                maxApplicants: document.getElementById("max_applicants").value,
+                maxPositions: document.getElementById("position_available").value,
+                dateOfPosting: document.getElementById("date_of_posting").value,
+                deadline: document.getElementById("deadline").value,
+                skillsets: document.getElementById("skill").value,
+                jobType: document.getElementById("jobtype").value,
+                duration: document.getElementById("duration").value,
+                salary: document.getElementById("salary").value,
+                rating: document.getElementById("rating").value,
         }
+        let t= JSON.parse(localStorage.getItem("token")).token
+        fetch("http://localhost:4444/api/jobs",{
+            method : "POST",
+            headers:{
+                'Content-Type':"application/json",
+                "Authorization": "Bearer "+t
+            },
+            body: JSON.stringify(obj)
+        }).then(y=> y.json()).then(y=>{
+          if(y.type)
+                {
+                location.href = 'home.html'
+                }
+        })
+       }
     </script>
 </body>
 </html>
