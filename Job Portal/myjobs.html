@@ -7,27 +7,48 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="myJobs()">
-    <h1>MY JOBS</h1>
+
     <input type="search" placeholder="Search Jobs" />
 
     <form id="display">
-      Role:
-      <p></p>
-      Salary:
-      <p></p>
-      Duration:
-      <p></p>
-      Date of Posting:
-      <p></p>
-      Number of Applicants:
-      <p></p>
-      Number of Positions
-      <p></p>
-
-      <button>View Application</button><button>Update Details</button
-      ><button>Delete Jobs</button>
+      <label>Title</label>
+      <input type="text" name="title" id="title"/>
+      <label>Skills</label>
+      <input type="text" name="skill" id="skill"/>
+      <label>Job Type</label>
+      <select id="jobtype">
+          <option>Full Time</option>
+          <option>Part Time</option>
+          <option>Work From Home</option>
+      </select>
+      <label>Duration</label>
+      <select id="duration">
+          <option value="0">Flexible</option>
+          <option value="1">1 Month</option>
+          <option value="2">2 Month</option>
+          <option value="3">3 Month</option>
+          <option value="4">4 Month</option>
+          <option value="5">5 Month</option>
+          <option value="6">6 Month</option>
+      </select>
+      <label>Salary</label>
+      <input type="number" name="salary" id="salary"/>
+      <label>Application Deadlines</label>
+      <input type="text" name="deadline" id="deadline"/>
+      <label>Maximum Number of Applicants</label>
+      <input type="number" name="max_applicants" id="max_applicants"/>
+      <label>Position Available</label>
+      <input type="number" name="maxPositions" id="maxPositions"/>
+      <label>Date Of Posting</label>
+      <input type="date" name="date_of_posting" id="date_of_posting"/>
+      <label>Rating</label>
+      <input type="number" name="rating" id="rating"/>
+      <button>View Application</button>
+      <button type="button" onclick="updateJobs()">Update Details</button>
+      <button type="button" onclick="deleteJob()">Delete Jobs</button>
     </form>
     <script>
+      let a={};
       const myJobs = () => {
         let t = JSON.parse(localStorage.getItem("token")).token;
         fetch("http://localhost:4444/api/jobs", {
@@ -39,6 +60,7 @@
         })
           .then((y) => y.json())
           .then((y) => {
+            a=y;
             display(y);
           });
       };
@@ -54,12 +76,20 @@
             <p>Number of Applicants: ${value.maxApplicants}</p>
             <p>Number of Positions: ${value.maxPositions}</p>
             <button>View Application</button>
-            <button>Update Details</button>
-            <button>Delete Jobs</button>
+            <button type="button" onclick="updateJobs()">Update Details</button>
+            <button onclick="deleteJobs()">Delete Jobs</button>
             </form>`;
         });
         document.getElementById("display").innerHTML = d.join(" ");
       };
+      
+      function updateJobs(){
+        location.href = "updatejobs.html";
+        alert("Redirecting to Update Page")
+      }
+    
+
+      
     </script>
   </body>
 </html>

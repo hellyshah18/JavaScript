@@ -9,31 +9,7 @@
 
 </head>
 <body onload="profile()">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #b66ac6;">
-        <a class="navbar-brand" href="#">Job Portal</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Add Jobs</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" href="#">My Jobs</a>
-            </li> 
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
-            </li>
-        </div>
-      </nav>
+    
       <form id="display">
         <label>Name</label>
         <input type="text" name="name" id="name"/>
@@ -41,10 +17,12 @@
         <input type="text" name="bio" id="bio"/>
         <label>Contact Number</label>
         <input type="tel" name="contactNumber" id="contactNumber"/>
-        <button type="submit">Submit</button>
+        
+        <button type="button" onclick="updateProfile()">Update</button>
     </form>
     <script>
         url="http://localhost:4444/api/user";
+        let a=[];
         const profile = () => {
         let t = JSON.parse(localStorage.getItem("token")).token;
         fetch(url, {
@@ -56,15 +34,39 @@
         })
           .then((y) => y.json())
           .then((y) => {
+             a=y;
             display(y);
           });
       };
+      const updateProfile=()=>{
+        const obj={
+        bio:document.getElementById("bio").value,
+        contactNumber:document.getElementById("contactNumber").value,
+        name:document.getElementById("name").value,
+        id:a._id
+      }
+      let t = JSON.parse(localStorage.getItem("token")).token;
+      fetch(url, {
+          method: "PUT",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${t}`,
+          },
+        })
+          .then((y) => y.json())
+          .then((y) => {
+            alert("Updated Sucessfully");
+            console.log(y);
+          });
+      };
+    
 
       const display = (y) => {
            document.getElementById("bio").value=y.bio
-          document.getElementById("name").value=y.name;
-        
-    
+          document.getElementById("name").value=y.name
+          document.getElementById("contactNumber").value=y.contactNumber;
+          
       };
     </script>
 </body>
