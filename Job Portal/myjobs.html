@@ -66,7 +66,7 @@
       };
 
       const display = (jobs) => {
-        let d = jobs.map(function (value) {
+        let d = jobs.map(function (value,index) {
           return `<form id="display">
             <h3 id="jobTitle">${value.title}</h3>
             <p>Role: ${value.jobType}</p>
@@ -76,14 +76,14 @@
             <p>Number of Applicants: ${value.maxApplicants}</p>
             <p>Number of Positions: ${value.maxPositions}</p>
             <button>View Application</button>
-            <button type="button" onclick="updateJobs()">Update Details</button>
+            <button type="button" onclick="updateJobs(${index})">Update Details</button>
             <button onclick="deleteJobs()">Delete Jobs</button>
             </form>`;
         });
         document.getElementById("display").innerHTML = d.join(" ");
       };
       
-      function updateJobs(){
+      function updateJobs(index){
         location.href = "updatejobs.html";
         alert("Redirecting to Update Page")
       }
