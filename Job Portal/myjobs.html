@@ -7,51 +7,54 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body onload="myJobs()">
-
     <input type="search" placeholder="Search Jobs" />
 
     <form id="display">
       <label>Title</label>
-      <input type="text" name="title" id="title"/>
+      <input type="text" name="title" id="title" />
       <label>Skills</label>
-      <input type="text" name="skill" id="skill"/>
+      <input type="text" name="skill" id="skill" />
       <label>Job Type</label>
       <select id="jobtype">
-          <option>Full Time</option>
-          <option>Part Time</option>
-          <option>Work From Home</option>
+        <option>Full Time</option>
+        <option>Part Time</option>
+        <option>Work From Home</option>
       </select>
       <label>Duration</label>
       <select id="duration">
-          <option value="0">Flexible</option>
-          <option value="1">1 Month</option>
-          <option value="2">2 Month</option>
-          <option value="3">3 Month</option>
-          <option value="4">4 Month</option>
-          <option value="5">5 Month</option>
-          <option value="6">6 Month</option>
+        <option value="0">Flexible</option>
+        <option value="1">1 Month</option>
+        <option value="2">2 Month</option>
+        <option value="3">3 Month</option>
+        <option value="4">4 Month</option>
+        <option value="5">5 Month</option>
+        <option value="6">6 Month</option>
       </select>
       <label>Salary</label>
-      <input type="number" name="salary" id="salary"/>
+      <input type="number" name="salary" id="salary" />
       <label>Application Deadlines</label>
-      <input type="text" name="deadline" id="deadline"/>
+      <input type="text" name="deadline" id="deadline" />
       <label>Maximum Number of Applicants</label>
-      <input type="number" name="max_applicants" id="max_applicants"/>
+      <input type="number" name="max_applicants" id="max_applicants" />
       <label>Position Available</label>
-      <input type="number" name="maxPositions" id="maxPositions"/>
+      <input type="number" name="maxPositions" id="maxPositions" />
       <label>Date Of Posting</label>
-      <input type="date" name="date_of_posting" id="date_of_posting"/>
+      <input type="date" name="date_of_posting" id="date_of_posting" />
       <label>Rating</label>
-      <input type="number" name="rating" id="rating"/>
+      <input type="number" name="rating" id="rating" />
+      <p id="msg"></p>
       <button>View Application</button>
-      <button type="button" onclick="updateJobs()">Update Details</button>
+      <button type="button" id="updatebutton" onclick="updateJobs()">
+        Update Details
+      </button>
+
       <button type="button" onclick="deleteJob()">Delete Jobs</button>
     </form>
     <script>
-      let a={};
+      let a = [];
       const myJobs = () => {
         let t = JSON.parse(localStorage.getItem("token")).token;
-        fetch("http://localhost:4444/api/jobs", {
+        fetch("http://localhost:4444/api/jobs?myjobs=1", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -60,13 +63,13 @@
         })
           .then((y) => y.json())
           .then((y) => {
-            a=y;
+            a = y;
             display(y);
           });
       };
 
       const display = (jobs) => {
-        let d = jobs.map(function (value,index) {
+        let d = jobs.map(function (value, index) {
           return `<form id="display">
             <h3 id="jobTitle">${value.title}</h3>
             <p>Role: ${value.jobType}</p>
@@ -75,21 +78,62 @@
             <p>Date of Posting: ${value.dateOfPosting}</p>
             <p>Number of Applicants: ${value.maxApplicants}</p>
             <p>Number of Positions: ${value.maxPositions}</p>
+            <p id="msg"></p>
             <button>View Application</button>
-            <button type="button" onclick="updateJobs(${index})">Update Details</button>
+            <button type="button" onclick="getData(${index})">Update Details</button>
             <button onclick="deleteJobs()">Delete Jobs</button>
-            </form>`;
+            </form>
+
+            
+            <div id="hidden">
+            <form id="display">
+      <label>Application Deadlines</label>
+      <input type="text" name="deadline" id="deadline" />
+      <label>Maximum Number of Applicants</label>
+      <input type="number" name="maxApplicants" id="maxApplicants" />
+      <label>Position Available</label>
+      <input type="number" name="maxPositions" id="maxPositions" />
+
+      <button type="button" onclick="updateJobs()">Update Details</button>
+    </form>
+    </div>`;
         });
         document.getElementById("display").innerHTML = d.join(" ");
       };
-      
-      function updateJobs(index){
-        location.href = "updatejobs.html";
-        alert("Redirecting to Update Page")
-      }
-    
+      const dis = (y) => {
+        document.getElementById("deadline").value = y.deadline;
+        document.getElementById("maxPositions").value = y.maxPositions;
+        document.getElementById("maxApplicants").value = y.maxApplicants;
+      };
+      let obj1 = {};
+      const getData = (index) => {
+        document.getElementById("hidden").style.display="block";
+        let b = a[index];
+        obj1 = b;
+        console.log(b);
+        dis(b);
+      };
+      const updateJobs = () => {
+        obj1.deadline = document.getElementById("deadline").value;
+        obj1.maxPositions = document.getElementById("maxPositions").value;
+        obj1.maxApplicants = document.getElementById("maxApplicants").value;
 
-      
+        let t = JSON.parse(localStorage.getItem("token")).token;
+        fetch(`http://localhost:4444/api/jobs/${obj1._id}`, {
+          method: "PUT",
+          body: JSON.stringify(obj1),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${t}`,
+          },
+        })
+          .then((y) => y.json())
+          .then((y) => {
+         
+            document.getElementById('msg').innerHTML = y.message;
+            window.location.href = "myjobs.html"
+          });
+      };
     </script>
   </body>
 </html>
