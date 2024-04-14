@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="disApplicants"></div>
+
+    <script>
+        const viewApplicants = () => {
+          const urlParams = new URLSearchParams(window.location.search);
+          const myParam = urlParams.get('myParam');
+          let t = JSON.parse(localStorage.getItem("token")).token;
+    
+          fetch(`http://localhost:4444/api/applicants?jobId=${myParam}&desc=dateOfApplication`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${t}`,
+            },
+          })
+            .then((y) => y.json())
+            .then((y) => {
+              disApplicants(y)
+            });
+        };
+    
+    
+        const disApplicants = (y) => {
+          let d = y.map((value, index) => {
+            return `<div class=" col-auto">
+          <div class="row">
+           
+            <div class="col ApplicationsText">
+              <h2>Application Details</h2>
+              <h4>${value.jobApplicant.name}</h4>
+                <div><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+              <p><i class="fa-regular fa-circle-check"></i> <span>Applied on:</span> 4/10/2024</p>
+              <p><i class="fa-regular fa-circle-check"></i> <span>Education:</span> Unpad(2020-2024)</p>
+              <p><i class="fa-regular fa-circle-check"></i> <span>SOP:</span> Available</p>
+              <button class="btn btn-success me-4">Shortlist</button> <button class="btn btn-danger">Reject</button>
+              <button class="btn upload"><i class="fa-solid fa-cloud-arrow-down"></i> Download</button>
+            </div>
+          </div>
+        </div>`
+          })
+    
+          document.getElementById('disApplicants').innerHTML = d.join(" ")
+        }
+    
+    
+    
+      </script>
+    
+</body>
+</html>

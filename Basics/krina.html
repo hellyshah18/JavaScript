@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <link rel="stylesheet" href="krina.css">
+
+</head>
+<script type="text/javascript" src="https://www.youtube.com/iframe_api">
+    
+</script>
+</head>
+    <body>
+        <div class="iframe-container">
+            <iframe id="myvideo" width="560" height="315" src="https://www.youtube.com/embed/hqLIWUvH8PY?si=R_mwRdBBuiRKk4rH" title="YouTube video player" frameborder="0" allow="accelerometer; controls; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        
+        <h1>Admission Form</h1>
+        <div>
+            <form>
+                <div id="name">
+                    <label>First Name:</label> 
+                    <input type="text" placeholder="First Name">
+                    <label>Middle Name:</label>
+                    <input type="text" placeholder="Middle Name">
+                    <label> Last Name:</label>
+                    <input type="text" placeholder="Last Name"> 
+                </div> 
+                <div id="gender">
+                    <label> Gender:</label><br>
+                    <input type="radio" id="female" name="gender">
+                    <label for="female">Female</label>
+                    <input type="radio" id="male" name="gender">
+                    <label for="male"> Male</label>
+                    <input type="radio" id="rathernotsay" name="gender">
+                    <label for="rathernotsay"> Rather Not Say</label>
+                </div><br>
+                  
+                
+                <label>Enter Age</label>
+                <input id="age" type="number" placeholder="Enter Age" min="18" />
+                <br>
+                <div>
+                    <label class="address">Permanent Address:</label>
+                    <textarea class="address-input" id="permanentAddress" rows="10" placeholder="Write Your Permanent Address Here"></textarea>
+    
+                    <label class="address">Current Address:</label>
+                    <textarea class="address-input" id="currentAddress" rows="10" placeholder="Write Your Current Address Here"></textarea>
+                    <button type="button" onclick="copyAddress()">Copy Permanent Address to Current Address</button>
+                </div>
+               
+                <label for="email" id="email">Email:</label>
+                <input type="email" placeholder="Enter Your Email Here">
+
+                <label id="bloodgroup">Select Your Blood Group:</label>
+                <select>
+                    <option value="O Positive">O Positive</option>
+                    <option value="O Negative">O Negative</option>
+                    <option value="A Positive">A Positive</option>
+                    <option value="A Negative">A Negative</option>
+                    <option value="AB Positive">AB Positive</option>
+                    <option value="AB Negative">AB Negative</option>
+                    <option value="B Positive">B Positive</option>
+                    <option value="B Negative">Negative</option>
+                </select>
+                <label>Program of Interest:</label>
+                <select id="program" name="program">
+                    <option value="CSE">Computer Science And Engineering</option>
+                    <option value="ME">Mechanical Engineering</option>
+                    <option value="CE">Civil Engineering</option>
+                    <option value="EE">Electrical Engineering</option>
+                </select>
+
+                <div id="uploads">
+                    <label for="resume">Upload 10th Marksheet</label>
+                    <input type="file" id="10th-doc" accept=".pdf, .docx" />
+                    <label for="resume">Upload 12th Marksheet</label>
+                    <input type="file" id="12th-doc" accept=".pdf, .docx" />
+                    <label for="resume">Upload JEE Marksheet</label>
+                    <input type="file" id="jee-doc" accept=".pdf, .docx" />
+                    <label for="resume">Upload Attempt Marksheet</label>
+                    <input type="file" id="attempt-doc" accept=".pdf, .docx" />
+                </div>
+                <label for="Documents" id="Documents"> Check The Uploaded Documents:</label><br>
+                <input type="checkbox">
+                <label>10th Marksheet</label>
+                <input type="checkbox">
+                <label>12th Marksheet</label>
+                <input type="checkbox">
+                <label>JEE Marksheet</label>
+                <input type="checkbox">
+                <label>Attempt Marksheet</label><br>
+
+
+                <input type="Reset"  value="Reset">
+                <input type="Submit"  value="Submit">
+            </form>
+        </div>
+</body>
+<script>
+
+    function copyAddress() {
+            let permanentAddress = document.getElementById('permanentAddress').value;
+            document.getElementById('currentAddress').value = permanentAddress;
+        }
+</script>
+</html> 

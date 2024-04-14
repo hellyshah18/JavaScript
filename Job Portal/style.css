@@ -5,7 +5,10 @@ body {
     padding: 0;
 }
 
-#hidden{
+#hidden_update{
+    display: none;
+}
+#hidden_delete{
     display: none;
 }
 .navbar {
