@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Full time<input type="checkbox" name="Full%20Time&" id="one" value="Full%20Time">
+    Part time<input type="checkbox" name="Part%20Time" id="two" value="Part%20Time">
+    WFH<input type="checkbox" name="Work%20From%20Home" id="three" value="Work%20From%20Home">
+    salary min <input type="number" id="minSal">
+    salary max <input type="number" id="maxSal">
+
+    duration <select name="duration" id="duration">
+        <option value="1">1 Year</option>
+        <option value="2">2 Years</option>
+        <option value="3">3 Years</option>
+    </select>
+
+    <button onclick="filterData(event)">Show</button>
+
+    <script>
+        const filterData = (e) => {
+            e.preventDefault();
+
+            let baseUrl = "http://localhost:4444/api/jobs?myjobs=1&";
+
+            let jobType1 = document.getElementById('one')
+            let jobType2 = document.getElementById('two')
+            let jobType3 = document.getElementById('three')
+            let minSal = document.getElementById('minSal').value
+            let maxSal = document.getElementById('maxSal').value
+            let duration = document.getElementById('duration').value
+            
+
+            if (jobType1.checked) {
+                baseUrl += ("jobType=" + jobType1.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType2.checked) {
+                baseUrl += ("jobType=" + jobType2.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType3.checked) {
+                baseUrl += ("jobType=" + jobType3.value + "&")
+                console.log(baseUrl)
+            }
+            if(minSal){
+                baseUrl+= ("salaryMin=" + minSal + "&")
+            }
+            if(maxSal){
+                baseUrl+= ("salaryMax=" + maxSal + "&")
+            }
+            if(duration){
+                baseUrl+= ("duration=" + duration)
+            }
+            console.log(baseUrl)
+            console.log("http://localhost:4444/api/jobs?myjobs=1&jobType=Full%20Time&jobType=Part%20Time&jobType=Work%20From%20Home&salaryMin=12000&salaryMax=93000&duration=7")
+        }
+    </script>
+</body>
+
+</html>

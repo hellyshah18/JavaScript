@@ -1,0 +1,183 @@
+/* Style for the body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style for the input search */
+input[type="search"] {
+  width: 300px;
+  padding: 10px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the modal content */
+.modal-content {
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the modal title */
+.modal-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style for the modal body */
+.modal-body {
+  margin-bottom: 20px;
+}
+
+/* Style for the modal footer */
+.modal-footer {
+  text-align: right;
+}
+
+/* Style for the buttons */
+.btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Style for the form labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Style for the select dropdown */
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the sliders */
+#slider-distance {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#slider-distance > div {
+  position: relative;
+}
+
+#slider-distance > div > span {
+  position: absolute;
+  left: 0;
+  font-size: 14px;
+}
+
+#slider-distance > div > span:nth-child(2) {
+  left: auto;
+  right: 0;
+}
+
+#slider-distance > div > input[type="range"] {
+  width: 100%;
+  height: 20px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#slider-distance > div > input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#slider-distance > div > input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Style for the job details */
+#display {
+  margin: 20px;
+}
+
+#display h3 {
+  margin-bottom: 10px;
+}
+
+#display p {
+  margin-bottom: 5px;
+}
+
+#display button {
+  margin-top: 10px;
+}
+
+/* Style for the form container */
+#filterform {
+  margin: 20px;
+}
+
+/* Style for the form group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Style for the labels */
+label {
+  display: block;
+  font-weight: bold;
+}
+
+/* Style for the range inputs */
+input[type="range"] {
+  width: 100%;
+}
+
+/* Style for the select input */
+select {
+  width: 100%;
+  padding: 5px;
+}
+
+/* Style for the checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the checkboxes */
+.checkbox-container input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+/* Style for the checkbox labels */
+.checkbox-container label {
+  margin-right: 15px;
+}
+

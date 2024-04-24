@@ -44,6 +44,8 @@ function display()
 {
   document.getElementById("person-img").src = reviews[index].img;
   document.getElementById("author").innerHTML = reviews[index].name;
+  document.getElementById("job").src = reviews[index].job;
+  document.getElementById("info").innerHTML = reviews[index].text;
 }
 
 function next()

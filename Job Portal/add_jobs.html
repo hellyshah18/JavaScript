@@ -9,6 +9,30 @@
 
 </head>
 <body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="home.html">Job Portal</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="myjobs.html">My Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html">Log out</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     <form>
         <label>Title</label>
         <input type="text" name="title" id="title"/>
@@ -32,14 +56,15 @@
         </select>
         <label>Salary</label>
         <input type="number" name="salary" id="salary"/>
-        <label>Application Deadlines</label>
-        <input type="date" name="deadline" id="deadline"/>
+        <label>Date Of Posting</label>
+        <input type="date" name="date_of_posting" id="date_of_posting"/>
+        
         <label>Maximum Number of Applicants</label>
         <input type="number" name="max_applicants" id="max_applicants"/>
         <label>Position Available</label>
         <input type="number" name="position_available" id="position_available"/>
-        <label>Date Of Posting</label>
-        <input type="date" name="date_of_posting" id="date_of_posting"/>
+        <label>Application Deadlines</label>
+        <input type="date" name="deadline" id="deadline"/>
         <label>Rating</label>
         <input type="number" name="rating" id="rating"/>
         <button type="submit" onclick="addJobs(event)">Submit</button>
@@ -71,7 +96,8 @@
         }).then(y=> y.json()).then(y=>{
           if(y.type)
                 {
-                location.href = 'home.html'
+                    
+                // location.href = 'home.html'
                 }
         })
        }

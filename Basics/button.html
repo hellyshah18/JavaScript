@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material-UI Styled Text Field</title>
+    <style>
+        /* CSS for TextField */
+        .textfield-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .textfield-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        .textfield-input:focus {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="textfield-container" id="textfield-container">
+        <label for="outlined-basic">Outlined</label>
+        <input type="text" class="textfield-input" id="outlined-basic" />
+    </div>
+
+    <!-- Include any other HTML content here -->
+
+    <script>
+        // JavaScript to create Material-UI styled text field
+
+        // Function to create Material-UI styled text field
+        function createMaterialUITextField() {
+            const container = document.getElementById('textfield-container');
+
+            // Create label element
+            const label = document.createElement('label');
+            label.setAttribute('for', 'outlined-basic');
+            label.innerText = 'Outlined';
+
+            // Create input element
+            const input = document.createElement('input');
+            input.setAttribute('type', 'text');
+            input.setAttribute('id', 'outlined-basic');
+            input.classList.add('textfield-input');
+
+            // Append label and input to container
+            container.appendChild(label);
+            container.appendChild(input);
+        }
+
+        // Call the function to create Material-UI styled text field
+        createMaterialUITextField();
+    </script>
+</body>
+</html>

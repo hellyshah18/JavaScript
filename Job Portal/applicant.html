@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Portal-Applicant</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="applicant.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
 <body>
     <form>
-        <div>Signing in as Applicant</div>
+        <div id="heading">Signing in as Applicant</div>
         <div id="basic-information">
             <label>Name</label>
             <input type="text" name="name" id="name"/>
@@ -22,33 +22,91 @@
             <label>Contact Number</label>
             <input type="tel" name="contactNumber" id="contactNumber"/>
         </div>
-        <div id="education">
+        <div id="education" >
             <div id="education-info">
                     <label>Institution Name</label>
-                    <input type="text" name="insti-name" />
-                    <label>Start Date</label>
-                    <input type="date" name="start-date" />
-                    <label>End Date</label>
-                    <input type="date" name="end-date" />
+                    <input type="text" id="institute-name" />
+                    <label>Start Year</label>
+                    <input type="number" id="start-date" />
+                    <label>End Year</label>
+                    <input type="number" id="end-date" />
+                    <button type="button" onclick="edu(event)">Save Education</button>
                     <button type="button" onclick="addMoreEducation()">Add More Education</button>
-                 </div>
+                 
             </div>
         </div>
         <div id="skills">
-            <div id="skills-heading"><u>Skills</u>
-                <input type="text" name="skill" class="skill-input">
-                <button type="button" onclick="addMoreSkill()">Add More Skill</button>
-            </div>    
+            <div id="skills-heading"><u>Skills</u></div>
+                <input type="text" name="skill" placeholder="Type and press Enter" id='skill'class="skill-input">
         </div>
-        <div id="resume">
-            <h2 id="resume-heading"><u>Resume</u></h2>
+        <!-- <div id="skills">
+            <div id="skills-heading"><u>Skills</u></div>
+            <div id="skills-input-container">
+                <input type="text" name="skill" id="skill" class="skill-input" placeholder="Type and press Enter" />
+            </div>
+        </div> -->
+
+         <div id="resume">
+            <div id="resume-heading"><u>Resume</u></div>
             <label for="resume">Upload Resume</label>
             <input type="file" name="resume-doc" id="resume-doc" accept=".pdf, .docx" />
         </div>
-        <button id="submit" type="submit">Submit</button>
+        <button id="submit" type="submit" onclick="signup(event)">Submit</button>
     </form>
     <script>
-         
+
+       let b= []
+       let a={}
+       const edu=(e)=>{
+        e.preventDefault();
+        a = {
+
+            institute_name:document.getElementById("institute-name").value,
+        institute_start:document.getElementById("start-date").value,
+        institute_end:document.getElementById("end-date").value
+        }
+        b.push(a)
+        console.log(b)
+    }
+    
+        const signup=(e)=> {
+
+        e.preventDefault();
+        const obj={
+            bio:'',
+            name:document.getElementById("name").value,
+            email:document.getElementById("email").value,
+            password:document.getElementById("password").value,
+            type:'applicant',
+            education:b,
+            profile:'',
+            resume:'',
+            contactNumber:document.getElementById("contactNumber").value,
+            skills:document.getElementById("skill").value
+
+        }
+        fetch("http://localhost:4444/auth/signup",{
+            method : "POST",
+            headers:{
+                'Content-Type':"application/json"
+            },
+            body: JSON.stringify(obj)
+        }).then(y=> y.json()).then(y=>{
+            
+           if(y.type)
+                {
+                    alert('logged in successfully')
+                    location.href = 'login.html'
+                }
+                else if(y.name){
+                    console.log(y.name)
+
+                }
+                else if(y.message){
+                    console.log(y.message)
+                }
+        })
+    }
         let addMoreEducation=()=>{
             let edu= document.getElementById("education-info").cloneNode(true);
             let p=edu.getElementsByTagName("input");
@@ -67,6 +125,7 @@
             p.target.parentElement.remove()
         };
 
+        
     </script>
 </body>
 </html>
