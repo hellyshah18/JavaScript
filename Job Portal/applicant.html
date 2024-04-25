@@ -9,7 +9,32 @@
 
 </head>
 <body>
-    <form>
+    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand logo-anchore" href="#">Job Portal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                          <a class="nav-link" href="recruiter.html">Sign Up As Recruiter</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active disabled" href="applicant.html">Sign Up As Applicant</a>
+                    </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="login.html">Log out</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        
+        <form>
         <div id="heading">Signing in as Applicant</div>
         <div id="basic-information">
             <label>Name</label>
@@ -27,9 +52,9 @@
                     <label>Institution Name</label>
                     <input type="text" id="institute-name" />
                     <label>Start Year</label>
-                    <input type="number" id="start-date" />
+                    <input id="start-date" type="text" />
                     <label>End Year</label>
-                    <input type="number" id="end-date" />
+                    <input id="end-date" type="text" />
                     <button type="button" onclick="edu(event)">Save Education</button>
                     <button type="button" onclick="addMoreEducation()">Add More Education</button>
                  
@@ -61,9 +86,9 @@
         e.preventDefault();
         a = {
 
-            institute_name:document.getElementById("institute-name").value,
-        institute_start:document.getElementById("start-date").value,
-        institute_end:document.getElementById("end-date").value
+            institutionName:document.getElementById("institute-name").value,
+            startYear:document.getElementById("start-date").value,
+        endYear:document.getElementById("end-date").value
         }
         b.push(a)
         console.log(b)
@@ -99,11 +124,11 @@
                     location.href = 'login.html'
                 }
                 else if(y.name){
-                    console.log(y.name)
+                    alert(y.name)
 
                 }
                 else if(y.message){
-                    console.log(y.message)
+                    alert(y.message)
                 }
         })
     }

@@ -12,6 +12,7 @@ body {
 }
 
 /* Navbar styles */
+/* Navbar styles */
 .navbar {
     background-color: #fff; /* White navbar background */
     border-bottom: 1px solid #dee2e6; /* Light gray border bottom */
@@ -42,13 +43,7 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
 }
 
-#heading {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-#basic-information label {
+form label {
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -57,7 +52,8 @@ input[type="text"],
 input[type="password"],
 input[type="tel"],
 input[type="number"],
-input[type="file"] {
+input[type="date"],
+select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -65,76 +61,15 @@ input[type="file"] {
     border-radius: 4px;
 }
 
-button[type="submit"],
-button[type="button"] {
+button[type="submit"] {
     padding: 10px 20px;
     background-color: #007bff; /* Blue button background */
     color: #fff; /* White text color */
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-right: 10px;
 }
 
-button[type="submit"]:hover,
-button[type="button"]:hover {
+button[type="submit"]:hover {
     background-color: #0056b3; /* Dark blue button background on hover */
-}
-
-/* Skills input styles */
-#skills {
-    margin-bottom: 20px;
-}
-
-#skills-heading {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.skill-input {
-    width: calc(100% - 30px); /* Adjusted width for the input */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ced4da; /* Light gray border */
-    border-radius: 4px;
-}
-
-/* Education input styles */
-#education {
-    margin-bottom: 20px;
-}
-
-#education-info {
-    margin-bottom: 20px;
-}
-
-#education-info input {
-    width: calc(100% - 30px); /* Adjusted width for the input */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ced4da; /* Light gray border */
-    border-radius: 4px;
-}
-
-/* Resume input styles */
-#resume {
-    margin-bottom: 20px;
-}
-
-#resume-heading {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-/* Additional styles */
-u {
-    text-decoration: none;
-}
-
-button[type="button"] {
-    background-color: #6c757d; /* Dark gray button background */
-}
-
-button[type="button"]:hover {
-    background-color: #5a6268; /* Darker gray button background on hover */
 }

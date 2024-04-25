@@ -9,7 +9,28 @@
     
 </head>
 <body>
-  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand logo-anchore" href="#">Job Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="recruiter.html">Sign In As Recruiter</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="applicant.html">Sign In As Applicant</a>
+                </li>
+                    <li class="nav-item active">
+                      <a class="nav-link active disabled" href="login.html">Log In</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
     <form>
   
             <label>Email</label>
@@ -19,6 +40,8 @@
            
         <button id="submit" onclick="login(event)"type="submit">Submit</button>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-KLzXfcO3plskG1pt7fVQZp5K8wq74dsq8lxf1DXEjxaQmuNRO4l5e9CvhM3gIKfs" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-U5JGCXY4ZwKCp7IgjD6cUMJ8Y46pvEwH1qnj+9t5JUgaotGy53mQNj4yAw7A5SLg" crossorigin="anonymous"></script>
     <script>
           
           const login=(e)=> {
@@ -38,18 +61,22 @@
             },
             body: JSON.stringify(obj)
         }).then(y=> y.json()).then(y=>{
+            if(y.message){
+                
+                alert(y.message)
+            }
           if(y.type=='recruiter')
                 {
                 
                 localStorage.setItem("token", JSON.stringify(y));
-                location.href = 'home.html'
+                location.href = 'home_recruiter.html'
                 
                 }
                 if(y.type=='applicant')
                 {
                 
                 localStorage.setItem("token", JSON.stringify(y));
-                location.href = 'applicant_jobs.html'
+                location.href = 'home.html'
                 
                 }
         })

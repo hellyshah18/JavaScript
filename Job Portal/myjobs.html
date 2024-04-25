@@ -11,10 +11,46 @@
   </head>
   <body onload="myJobs()">
 
-    <input type="search" placeholder="Search Jobs" />
-    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="sortmodalbutton" data-target="#SortModal">
-      Sort By
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+          <a class="navbar-brand logo-anchore" href="home_recruiter.html">Job Portal</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item ">
+                    <a class="nav-link " href="home_recruiter.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="profile.html">Profile</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link active disabled" href="myjobs.html">Jobs Posted</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link" href="add_jobs.html">Post A Job</a>
+                </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login.html">Log out</a>
+                  </li>
+                  
+              </ul>
+          </div>
+      </div>
+  </nav>
+
+    
+    <div class="search-container">
+      <input type="search" placeholder="Search Jobs" />
+      <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="sortmodalbutton" data-target="#SortModal">
+          Sort By
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="filtermodalbutton" data-target="#FilterModal">
+          Apply Filters
+      </button>
+  </div>
+  
 
   
       <div class="modal fade" id="SortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,9 +90,7 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="filtermodalbutton" data-target="#FilterModal">
-      Apply Filters
-    </button>
+   
     <div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -82,13 +116,15 @@
               
               <div class="form-group">
                 <label>Min. Salary</label>
-                <input type="range" min="5000" max="50000">
-              </div>
-              
-              <div class="form-group">
+                <input type="range" id="minSalaryRange" min="5000" max="50000">
+                <span id="minSalaryValue">5000</span> <!-- Display the minimum salary value -->
+            </div>
+            
+            <div class="form-group">
                 <label>Max. Salary</label>
-                <input type="range" min="5000" max="50000">
-              </div>
+                <input type="range" id="maxSalaryRange" min="5000" max="50000">
+                <span id="maxSalaryValue">50000</span> <!-- Display the maximum salary value -->
+            </div>
             
               <div class="form-group">
                 <label>Duration</label>
@@ -229,6 +265,35 @@
           $('#DeleteModal').modal('show');
         }
       };
+
+// Get the elements
+const minSalaryRange = document.getElementById('minSalaryRange');
+const maxSalaryRange = document.getElementById('maxSalaryRange');
+const minSalaryValue = document.getElementById('minSalaryValue');
+const maxSalaryValue = document.getElementById('maxSalaryValue');
+
+// Add event listeners to the range sliders
+minSalaryRange.addEventListener('input', updateMinSalaryValue);
+maxSalaryRange.addEventListener('input', updateMaxSalaryValue);
+
+// Function to update the minimum salary value
+function updateMinSalaryValue() {
+    // Ensure that min salary cannot be greater than max salary
+    if (parseInt(this.value) > parseInt(maxSalaryRange.value)) {
+        maxSalaryRange.value = this.value;
+    }
+    minSalaryValue.textContent = this.value;
+}
+
+// Function to update the maximum salary value
+function updateMaxSalaryValue() {
+    // Ensure that max salary cannot be less than min salary
+    if (parseInt(this.value) < parseInt(minSalaryRange.value)) {
+        minSalaryRange.value = this.value;
+    }
+    maxSalaryValue.textContent = this.value;
+}
+
 
      
       const deleteJob = () => {

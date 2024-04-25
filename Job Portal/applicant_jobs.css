@@ -1,0 +1,122 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #fff; /* White navbar background */
+    border-bottom: 1px solid #dee2e6; /* Light gray border bottom */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333; /* Dark gray text color */
+}
+
+.navbar-nav .nav-link {
+    color: #333; /* Dark gray text color */
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Blue text color on hover */
+}
+
+input[type="search"] {
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 4px;
+  }
+
+/* Modal styles */
+.modal-body label {
+    font-weight: bold;
+}
+
+/* Range slider styles */
+#slider-distance {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+}
+
+#slider-distance > div {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+}
+
+#slider-distance > div > div {
+    position: absolute;
+    height: 5px;
+    background: #007bff; /* Blue range color */
+}
+
+#slider-distance > div > span {
+    position: absolute;
+    top: -10px;
+    color: #333; /* Dark gray text color */
+}
+
+#slider-distance > div > div:nth-child(1) {
+    background: #ddd;
+}
+
+#slider-distance > div > div:nth-child(2) {
+    background: #ddd;
+}
+
+#slider-distance > div > div:nth-child(3) {
+    background: #007bff; /* Blue range color */
+}
+
+#slider-distance > div > div:nth-child(4) {
+    background: #ddd;
+}
+
+#slider-distance > div > span:nth-child(5) {
+    left: 0;
+}
+
+#slider-distance > div > span:nth-child(6) {
+    right: 0;
+}
+
+/* Job display styles */
+#display {
+    margin-top: 20px;
+}
+
+#display form {
+    background-color: #fff; /* White form background */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+#display h3 {
+    margin-bottom: 10px;
+}
+
+#display p {
+    margin-bottom: 5px;
+}
+
+#display button {
+    margin-top: 10px;
+}
