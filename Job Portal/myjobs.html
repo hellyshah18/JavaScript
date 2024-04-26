@@ -43,10 +43,10 @@
     
     <div class="search-container">
       <input type="search" placeholder="Search Jobs" />
-      <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="sortmodalbutton" data-target="#SortModal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="sortmodalbutton" data-target="#SortModal">
           Sort By
       </button>
-      <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="filtermodalbutton" data-target="#FilterModal">
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="filtermodalbutton" data-target="#FilterModal">
           Apply Filters
       </button>
   </div>
@@ -95,7 +95,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Apply Filters</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -105,16 +105,16 @@
               <div class="form-group">
                 <label>Job Type</label>
                 <div class="checkbox-container">
-                  <input type="checkbox" name="Full%20Time&" id="one" value="Full%20Time">
+                  <input type="checkbox" name="Full%20Time&" id="fulltime" value="Full%20Time">
                   <label for="one">Full time</label>
-                  <input type="checkbox" name="Part%20Time" id="two" value="Part%20Time">
+                  <input type="checkbox" name="Part%20Time" id="parttime" value="Part%20Time">
                   <label for="two">Part time</label>
-                  <input type="checkbox" name="Work%20From%20Home" id="three" value="Work%20From%20Home">
+                  <input type="checkbox" name="Work%20From%20Home" id="wfh" value="Work%20From%20Home">
                   <label for="three">WFH</label>
                 </div>
               </div>
               
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label>Min. Salary</label>
                 <input type="range" id="minSalaryRange" min="5000" max="50000">
                 <span id="minSalaryValue">5000</span> <!-- Display the minimum salary value -->
@@ -137,11 +137,11 @@
                   <option value="5">5 Month</option>
                   <option value="6">6 Month</option>
                 </select>
-              </div>
+              </div> -->
             </form>
             </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary">Apply Filters</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -266,33 +266,33 @@
         }
       };
 
-// Get the elements
-const minSalaryRange = document.getElementById('minSalaryRange');
-const maxSalaryRange = document.getElementById('maxSalaryRange');
-const minSalaryValue = document.getElementById('minSalaryValue');
-const maxSalaryValue = document.getElementById('maxSalaryValue');
+// // Get the elements
+// const minSalaryRange = document.getElementById('minSalaryRange');
+// const maxSalaryRange = document.getElementById('maxSalaryRange');
+// const minSalaryValue = document.getElementById('minSalaryValue');
+// const maxSalaryValue = document.getElementById('maxSalaryValue');
 
-// Add event listeners to the range sliders
-minSalaryRange.addEventListener('input', updateMinSalaryValue);
-maxSalaryRange.addEventListener('input', updateMaxSalaryValue);
+// // Add event listeners to the range sliders
+// minSalaryRange.addEventListener('input', updateMinSalaryValue);
+// maxSalaryRange.addEventListener('input', updateMaxSalaryValue);
 
-// Function to update the minimum salary value
-function updateMinSalaryValue() {
-    // Ensure that min salary cannot be greater than max salary
-    if (parseInt(this.value) > parseInt(maxSalaryRange.value)) {
-        maxSalaryRange.value = this.value;
-    }
-    minSalaryValue.textContent = this.value;
-}
+// // Function to update the minimum salary value
+// function updateMinSalaryValue() {
+//     // Ensure that min salary cannot be greater than max salary
+//     if (parseInt(this.value) > parseInt(maxSalaryRange.value)) {
+//         maxSalaryRange.value = this.value;
+//     }
+//     minSalaryValue.textContent = this.value;
+// }
 
-// Function to update the maximum salary value
-function updateMaxSalaryValue() {
-    // Ensure that max salary cannot be less than min salary
-    if (parseInt(this.value) < parseInt(minSalaryRange.value)) {
-        minSalaryRange.value = this.value;
-    }
-    maxSalaryValue.textContent = this.value;
-}
+// // Function to update the maximum salary value
+// function updateMaxSalaryValue() {
+//     // Ensure that max salary cannot be less than min salary
+//     if (parseInt(this.value) < parseInt(minSalaryRange.value)) {
+//         minSalaryRange.value = this.value;
+//     }
+//     maxSalaryValue.textContent = this.value;
+// }
 
 
      
@@ -339,6 +339,60 @@ function updateMaxSalaryValue() {
             window.location.href = "myjobs.html";
           });
       };
+
+
+      const filterData = (e) => {
+            e.preventDefault();
+
+            let baseUrl = "http://localhost:4444/api/jobs?myjobs=1&";
+
+            let jobType1 = document.getElementById('fulltime')
+            let jobType2 = document.getElementById('parttime')
+            let jobType3 = document.getElementById('wfh')
+            // let minSal = document.getElementById('minSalaryRange').value
+            // let maxSal = document.getElementById('maxSalaryRange').value
+            // let duration = document.getElementById('duration').value
+            
+
+            if (jobType1.checked) {
+                baseUrl += ("jobType=" + jobType1.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType2.checked) {
+                baseUrl += ("jobType=" + jobType2.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType3.checked) {
+                baseUrl += ("jobType=" + jobType3.value)
+                console.log(baseUrl)
+            }
+            // if(minSal){
+            //     baseUrl+= ("salaryMin=" + minSal + "&")
+            // }
+            // if(maxSal){
+            //     baseUrl+= ("salaryMax=" + maxSal + "&")
+            // }
+            // if(duration){
+            //     baseUrl+= ("duration=" + duration)
+            // }
+            console.log(baseUrl)
+            
+        
+        fetch(baseUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${t}`,
+          },
+        })
+          .then((y) => y.json())
+          .then((y) => {
+            a = y;
+            display(y);
+          });
+      
+            
+        }
     </script>
 
         

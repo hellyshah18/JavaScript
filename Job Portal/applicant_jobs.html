@@ -37,101 +37,83 @@
     </div>
 </nav>
 
-    <input type="search" placeholder="Search Jobs" />
-    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="sortmodalbutton" data-target="#SortModal">
-      Sort By
-    </button>
+    <div class="search-container">
+      <input type="search" placeholder="Search Jobs" />
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="sortmodalbutton" data-target="#SortModal">
+          Sort By
+      </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" id="filtermodalbutton" data-target="#FilterModal">
+          Apply Filters
+      </button>
+  </div>
+  
 
   
-    <div class="modal fade" id="SortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Sort By</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+      <div class="modal fade" id="SortModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sort By</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             <!-- Form for sorting options -->
+        <form id="sortingForm">
+          <div class="form-group">
+            <label for="sortByDuration">Sort by Duration</label>
+            <!-- Select dropdown for sorting by duration -->
+            <select class="form-control" id="sortByDuration">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
           </div>
-          <div class="modal-body">
-            <form id="jobSortForm">
-              <div class="row mb-3">
-                  <div class="col">
-                      <label for="sortBy">Sort By</label>
-                      <select class="form-select" id="sortBy" name="sortBy">
-                          <option value="salary">Salary</option>
-                      </select>
-                  </div>
-                  <div class="col">
-                      <label for="sortOrder">Sort Order</label>
-                      <button type="button" class="arrow-btn" id="sortOrderBtn" onclick="toggleSortOrder()">
-                          <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                              <path d="M12 2l-6 8h4v6h4v-6h4z"/>
-                          </svg>
-                      </button>
-                  </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Sort Jobs</button>
-          </form>
-      
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Sort Jobs </button>
+          <div class="form-group">
+            <label for="sortByIncome">Sort by Income</label>
+            <!-- Select dropdown for sorting by income -->
+            <select class="form-control" id="sortByIncome">
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Sort Jobs </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="SortandFilter(Filter)" id="filtermodalbutton" data-target="#FilterModal">
-      Apply Filters
-    </button>
-    <div class="modal fade" id="FilterModal
-    " tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   
+    <div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Apply Filters</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-             <form id="filterform">
-              <label>Job Type </label>
-              <select id="jobtype">
-                <option>Full Time</option>
-                <option>Part Time</option>
-                <option>Work From Home</option>
-            </select>
-
-
-
-              <label>Salary Per Annum</label>
-              <label>Minimum Salary</label>
-              <input type="number" min="0" max="100000" id="min_sal"/>
-              <label>Maximum Salary</label>
-              <input type="number" min="0" max="100000" id="max_sal"/>
-
-
-
-
-
-
-              <label>Duration</label>
-              <select id="duration">
-                <option value="0">Flexible</option>
-                <option value="1">1 Month</option>
-                <option value="2">2 Month</option>
-                <option value="3">3 Month</option>
-                <option value="4">4 Month</option>
-                <option value="5">5 Month</option>
-                <option value="6">6 Month</option>
-            </select>
-              
+            <form id="filterform">
+              <div class="form-group">
+                <label>Job Type</label>
+                <div class="checkbox-container">
+                  <input type="checkbox" name="Full%20Time&" id="fulltime" value="Full%20Time">
+                  <label for="one">Full time</label>
+                  <input type="checkbox" name="Part%20Time" id="parttime" value="Part%20Time">
+                  <label for="two">Part time</label>
+                  <input type="checkbox" name="Work%20From%20Home" id="wfh" value="Work%20From%20Home">
+                  <label for="three">WFH</label>
+                </div>
+              </div>
+          
             </form>
-          </div>
+            </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" onclick="filterData(event)" class="btn btn-primary">Apply Filters</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -146,8 +128,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
          let a = [];
+         let t = JSON.parse(localStorage.getItem("token")).token;
         const myJobs = () => {
-        let t = JSON.parse(localStorage.getItem("token")).token;
+       
         fetch("http://localhost:4444/api/jobs?myjobs=1", {
           method: "GET",
           headers: {
@@ -184,13 +167,6 @@
 
 
 
-      function toggleSortOrder() {
-            const arrowIcon = document.querySelector('.arrow-icon');
-            arrowIcon.classList.toggle('rotate');
-        }
-
-
-
 
       let obj1 = {};
       
@@ -213,6 +189,49 @@
            alert(y.message)
           });
       };
+
+
+
+      const filterData = (e) => {
+            e.preventDefault();
+
+            let baseUrl = "http://localhost:4444/api/jobs?myjobs=1&";
+
+            let jobType1 = document.getElementById('fulltime')
+            let jobType2 = document.getElementById('parttime')
+            let jobType3 = document.getElementById('wfh')
+            
+
+            if (jobType1.checked) {
+                baseUrl += ("jobType=" + jobType1.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType2.checked) {
+                baseUrl += ("jobType=" + jobType2.value + "&")
+                // console.log(baseUrl)
+            }
+            if (jobType3.checked) {
+                baseUrl += ("jobType=" + jobType3.value)
+                console.log(baseUrl)
+            }
+            
+            
+        
+        fetch(baseUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            'Authorization': `Bearer ${t}`,
+          },
+        })
+          .then((y) => y.json())
+          .then((y) => {
+            a = y;
+            display(y);
+          });
+      
+            
+        }
     </script>
     
 </body>
