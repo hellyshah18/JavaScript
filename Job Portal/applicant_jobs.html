@@ -156,8 +156,31 @@
               <p>Date of Posting: ${value.dateOfPosting}</p>
               <p>Number of Applicants: ${value.maxApplicants}</p>
               <p>Number of Positions: ${value.maxPositions}</p>
-              <p id="msg"></p>
-              <button type='button' class="btn btn-primary" onclick='ApplyJobs(${index})'>Apply</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" id="applymodalbutton" data-target="#ApplyModal">
+          Apply 
+      </button>
+      <div class="modal fade" id="ApplyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Apply for this job</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <textarea row="50" column="50" placeholder='Write SOP(upto 250 words)' id='soptextarea'></textarea>
+            
+            </div>
+          <div class="modal-footer">
+            <button type="button"onclick='ApplyJobs(${index})' class="btn btn-primary">Apply</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     
              
             </form>
           `;

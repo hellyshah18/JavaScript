@@ -11,35 +11,35 @@
   </head>
   <body onload="myJobs()">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-          <a class="navbar-brand logo-anchore" href="home_recruiter.html">Job Portal</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item ">
-                    <a class="nav-link " href="home_recruiter.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="profile.html">Profile</a>
-                  </li>
-                  <li class="nav-item active">
-                    <a class="nav-link active disabled" href="myjobs.html">Jobs Posted</a>
-                  </li>
-                  <li class="nav-item ">
-                    <a class="nav-link" href="add_jobs.html">Post A Job</a>
+    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand logo-anchore" href="home_recruiter.html">Job Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item ">
+                  <a class="nav-link " href="home_recruiter.html">Home</a>
                 </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="login.html">Log out</a>
-                  </li>
-                  
-              </ul>
-          </div>
-      </div>
-  </nav>
-
+                <li class="nav-item ">
+                  <a class="nav-link " href="profile.html">Profile</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link active disabled" href="myjobs.html">Jobs Posted</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link " href="add_jobs.html">Post A Job</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.html">Log out</a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
     
     <div class="search-container">
       <input type="search" placeholder="Search Jobs" />
@@ -114,34 +114,11 @@
                 </div>
               </div>
               
-              <!-- <div class="form-group">
-                <label>Min. Salary</label>
-                <input type="range" id="minSalaryRange" min="5000" max="50000">
-                <span id="minSalaryValue">5000</span> <!-- Display the minimum salary value -->
-            </div>
-            
-            <div class="form-group">
-                <label>Max. Salary</label>
-                <input type="range" id="maxSalaryRange" min="5000" max="50000">
-                <span id="maxSalaryValue">50000</span> <!-- Display the maximum salary value -->
-            </div>
-            
-              <div class="form-group">
-                <label>Duration</label>
-                <select id="duration">
-                  <option value="0">Flexible</option>
-                  <option value="1">1 Month</option>
-                  <option value="2">2 Month</option>
-                  <option value="3">3 Month</option>
-                  <option value="4">4 Month</option>
-                  <option value="5">5 Month</option>
-                  <option value="6">6 Month</option>
-                </select>
-              </div> -->
+             
             </form>
             </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Apply Filters</button>
+            <button type="button" class="btn btn-primary"data-dismiss="modal" onclick="filterData(event)">Apply Filters</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
@@ -242,7 +219,7 @@
               <p>Number of Applicants: ${value.maxApplicants}</p>
               <p>Number of Positions: ${value.maxPositions}</p>
               <p id="msg"></p>
-              <button type='button' class="btn btn-primary" onclick='viewApplicants(${index})'>View Application</button>
+              <button type='button' class="btn btn-primary" onclick='viewApplicants(${index})'>View Applicants</button>
               <button type="button" class="btn btn-primary" onclick="getData(${index},'Update')">Update Details</button>
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal" onclick="getData(${index},'Delete')">Delete Job</button>
             </form>
@@ -343,6 +320,7 @@
 
       const filterData = (e) => {
             e.preventDefault();
+            let t = JSON.parse(localStorage.getItem("token")).token;
 
             let baseUrl = "http://localhost:4444/api/jobs?myjobs=1&";
 

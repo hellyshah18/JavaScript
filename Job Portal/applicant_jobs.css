@@ -32,68 +32,56 @@ body {
     color: #007bff; /* Blue text color on hover */
 }
 
+/* Search input styles */
 input[type="search"] {
     width: 300px;
     padding: 10px;
     margin: 20px;
     border: 1px solid #ced4da; /* Light gray border */
     border-radius: 4px;
-  }
+}
 
 /* Modal styles */
-.modal-body label {
+.modal-content {
+    background-color: #fff; /* White modal background */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.modal-header {
+    border-bottom: none; /* Remove border bottom */
+}
+
+.modal-title {
+    font-size: 1.5rem;
     font-weight: bold;
-}
-
-/* Range slider styles */
-#slider-distance {
-    position: relative;
-    width: 100%;
-    height: 20px;
-    margin-top: 10px;
-}
-
-#slider-distance > div {
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    background: #ddd;
-}
-
-#slider-distance > div > div {
-    position: absolute;
-    height: 5px;
-    background: #007bff; /* Blue range color */
-}
-
-#slider-distance > div > span {
-    position: absolute;
-    top: -10px;
     color: #333; /* Dark gray text color */
 }
 
-#slider-distance > div > div:nth-child(1) {
-    background: #ddd;
+.modal-body {
+    padding: 20px;
 }
 
-#slider-distance > div > div:nth-child(2) {
-    background: #ddd;
+.modal-body textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 4px;
 }
 
-#slider-distance > div > div:nth-child(3) {
-    background: #007bff; /* Blue range color */
+.modal-footer {
+    border-top: none; /* Remove border top */
 }
 
-#slider-distance > div > div:nth-child(4) {
-    background: #ddd;
+.modal-footer .btn-primary {
+    background-color: #007bff; /* Blue button background color */
+    border: none;
 }
 
-#slider-distance > div > span:nth-child(5) {
-    left: 0;
-}
-
-#slider-distance > div > span:nth-child(6) {
-    right: 0;
+.modal-footer .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Job display styles */
@@ -120,3 +108,5 @@ input[type="search"] {
 #display button {
     margin-top: 10px;
 }
+
+ 
