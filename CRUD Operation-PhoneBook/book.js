@@ -2,13 +2,11 @@ let people = [];
 let ind = -1;
 
 function AddPeople() {
-    const firstName = document.getElementById("firstname").value;
-    const lastName = document.getElementById("lastname").value;
+    const firstName = document.getElementById("firstname").value
     const phoneNumber = document.getElementById("phonenumber").value;
 
     const newPerson = {
         firstName: firstName,
-        lastName: lastName,
         phoneNumber: phoneNumber
     };
 
@@ -25,7 +23,7 @@ function AddPeople() {
 function display() {
     let display = people.map(function (person, index) {
        return `<div class="person">
-            <p>Name: ${person.firstName} ${person.lastName}</p>
+            <p>Name: ${person.firstName} </p>
             <p>Phone: ${person.phoneNumber}</p>
             <button class="edit-btn" onclick="EditItems(${index})">Edit</button>
             <button class="delete-btn" onclick="removeItems(${index})">Delete</button>
@@ -42,7 +40,6 @@ function removeItems(index) {
 function EditItems(index) {
     const person = people[index];
     document.getElementById("firstname").value = person.firstName;
-    document.getElementById("lastname").value = person.lastName;
     document.getElementById("phonenumber").value = person.phoneNumber;
     ind = index;
 }
@@ -55,6 +52,6 @@ function ClearItems() {
 
 function clearForm() {
     document.getElementById("firstname").value = "";
-    document.getElementById("lastname").value = "";
+   
     document.getElementById("phonenumber").value = "";
 }
