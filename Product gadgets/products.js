@@ -1,29 +1,5 @@
 const products = [
-  {
-    "product_id": 1,
-    "name": "Smartphone",
-    "description": "High-end smartphone with advanced features.",
-    "price": 599.99,
-    "unit": "Piece",
-    "image": "./images/smartphone.png",
-    "discount": 10,
-    "availability": true,
-    "brand": "BrandX",
-    "category": "Electronics",
-    "rating": 4.5,
-    "reviews": [
-      {
-        "user_id": 1,
-        "rating": 5,
-        "comment": "Great phone with a superb camera!"
-      },
-      {
-        "user_id": 2,
-        "rating": 4,
-        "comment": "Good performance, but the battery life could be better."
-      }
-    ]
-  },
+  
   {
     "product_id": 2,
     "name": "Laptop",
