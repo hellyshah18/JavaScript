@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="employees.css" />
+</head>
+<body onload="Employees()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand logo-anchore" href="home_recruiter.html">Job Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item ">
+                      <a class="nav-link " href="home_recruiter.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="myjobs.html">Jobs Posted</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="add_jobs.html">Post A Job</a>
+                  </li>
+                  <li class="nav-item  active ">
+                    <a class="nav-link  active disabled" href="employees.html">Employees</a>
+                </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="login.html">Log out</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="disEmployees"></div>
+
+    <footer class="bg-dark text-light text-center py-4" id="copyright">
+        <div class="container">
+            <p>&copy; 2024 Job Portal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let c=''
+        const Employees = () => {
+            
+            let t = JSON.parse(localStorage.getItem("token")).token;
+
+            fetch(`http://localhost:4444/api/applicants?status=accepted&desc=dateOfJoining`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${t}`,
+                },
+            })
+                .then((y) => y.json())
+                .then((y) => {
+                    disEmployees(y)
+                  
+                     console.log(y)
+                     c=y[0]._id;
+                     console.log(c)
+                });
+        };
+
+        const disEmployees = (applicants) => {
+            const container = document.getElementById('disEmployees');
+            container.innerHTML = ''; // Clear previous content
+
+            applicants.forEach(applicant => {
+                const card = document.createElement('div');
+                card.classList.add('job-card'); // Apply job card styling
+
+                card.innerHTML = `
+                    <h3>Name: ${applicant.jobApplicant.name}</h3>
+                    <p>Job Title: ${applicant.jobApplicant.education.institutionName}</p>
+                    <p>Role: ${applicant.job.jobType}</p>
+                    <div type='date'>Applied On: ${applicant.dateOfApplication}</div>
+                    <p>SOP: ${applicant.sop}</p>
+                    <button type="button" class="btn btn-outline-primary">Download Resume</button>
+                    <button type="button" class="btn btn-outline-primary">End Job</button>                  
+                    <button type="button" class="btn btn-outline-primary">Rate Applicant</button>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+
+        const EndEmployee = () => {
+            
+            let t = JSON.parse(localStorage.getItem("token")).token;
+
+            fetch('http://localhost:4444/api/applications/'+c, {
+                method: "Delete",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${t}`,
+                },
+            })
+                .then((y) => y.json())
+                .then((y) => {
+                    disEmployees(y)
+                    console.log(y)
+                });
+        };
+    </script>
+
+</body>
+</html>

@@ -8,61 +8,56 @@
 </head>
 <body onload="viewApplicants()">
 
-    <div id="disApplicants"></div>
+    <div class="container" id="disApplicants"></div>
 
-    <footer class="bg-dark text-light text-center py-4"  id="copyright" >
-      <div class="container">
-          <p>&copy; 2024 Job Portal. All rights reserved.</p>
-      </div>
-  </footer>
+    <footer class="bg-dark text-light text-center py-4" id="copyright">
+        <div class="container">
+            <p>&copy; 2024 Job Portal. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         const viewApplicants = () => {
-          const urlParams = new URLSearchParams(window.location.search);
-          const myParam = urlParams.get('myParam');
-          let t = JSON.parse(localStorage.getItem("token")).token;
-          console.log(myParam)
-    
-          fetch(`http://localhost:4444/api/applicants?jobId=${myParam}&desc=dateOfApplication`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${t}`,
-            },
-          })
-            .then((y) => y.json())
-            .then((y) => {
-              disApplicants(y)
-            });
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('myParam');
+            let t = JSON.parse(localStorage.getItem("token")).token;
+
+            fetch(`http://localhost:4444/api/applicants?jobId=${myParam}&desc=dateOfApplication`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${t}`,
+                },
+            })
+                .then((y) => y.json())
+                .then((y) => {
+                    disApplicants(y)
+                    console.log(y)
+                });
         };
-    
-    
-        const disApplicants = (y) => {
-          let d = y.map((value, index) => {
-            return `<div class=" col-auto">
-          <div class="row">
-           
-            <div class="col ApplicationsText">
-              <h2>Application Details</h2>
-              <h4>${value.jobApplicant.name}</h4>
-                <div><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-              <p><i class="fa-regular fa-circle-check"></i> <span>Applied on:</span> 4/10/2024</p>
-              <p><i class="fa-regular fa-circle-check"></i> <span>Education:</span> Unpad(2020-2024)</p>
-              <p><i class="fa-regular fa-circle-check"></i> <span>SOP:</span> Available</p>
-              <button class="btn btn-success me-4">Shortlist</button> <button class="btn btn-danger">Reject</button>
-              <button class="btn upload"><i class="fa-solid fa-cloud-arrow-down"></i> Download</button>
-            </div>
-          </div>
-        </div>`
-          })
-    
-          document.getElementById('disApplicants').innerHTML = d.join(" ")
+
+
+        const disApplicants = (applicants) => {
+            const container = document.getElementById('disApplicants');
+            container.innerHTML = ''; // Clear previous content
+
+            applicants.forEach(applicant => {
+                const card = document.createElement('div');
+                card.classList.add('job-card'); // Apply job card styling
+
+                card.innerHTML = `
+                    <h3>Name: ${applicant.jobApplicant.name}</h3>
+                    <p>Education: ${applicant.jobApplicant.education.institutionName}</p>
+                    <div type='date'>Applied On: ${applicant.dateOfApplication}</div>
+                    <p>SOP: ${applicant.sop}</p>
+                    <button type="button" class="btn btn-outline-primary">Download Resume</button>
+                    <button type="button" class="btn btn-outline-primary">${applicant.status}</button>
+                `;
+
+                container.appendChild(card);
+            });
         }
-    
-    
-    
-      </script>
-    
+    </script>
+
 </body>
 </html>
