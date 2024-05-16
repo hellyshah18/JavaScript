@@ -87,7 +87,9 @@ input[type="search"] {
 }
 
 #display button {
-  margin-top: 10px;
+  margin-top: -222px;
+  margin-right: -3px;
+  padding: 100px 50px;
 }
 
 

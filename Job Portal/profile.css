@@ -15,6 +15,10 @@ body {
 .navbar {
     background-color: #fff; /* White navbar background */
     border-bottom: 1px solid #dee2e6; /* Light gray border bottom */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .navbar-brand {
@@ -34,6 +38,7 @@ body {
 
 /* Form styles */
 form {
+    height: 100vh;
     max-width: 600px;
     margin: 50px auto;
     background-color: #fff; /* White form background */
