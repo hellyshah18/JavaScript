@@ -38,7 +38,9 @@
 </nav>
 
     <div class="search-container">
-      <input type="search" placeholder="Search Jobs" />
+     
+      <input id="searchTerm" placeholder="Search Jobs ">
+      <button type="button" class="btn btn-primary" onclick="searchValue()">Search</button> 
       <button type="button" class="btn btn-primary" data-toggle="modal" id="sortmodalbutton" data-target="#SortModal">
           Sort By
       </button>
@@ -62,25 +64,20 @@
              <!-- Form for sorting options -->
         <form id="sortingForm">
           <div class="form-group">
-            <label for="sortByDuration">Sort by Duration</label>
+            <label for="sortBy">Sort by </label>
             <!-- Select dropdown for sorting by duration -->
-            <select class="form-control" id="sortByDuration">
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
+            <select class="form-control" id="sortBy">
+              <option value="d_asc">Duration-Ascending</option>
+              <option value="d_desc">Duration-Descending</option>
+              <option value="i_asc">Income-Ascending</option>
+              <option value="i_desc">Income-Descending</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="sortByIncome">Sort by Income</label>
-            <!-- Select dropdown for sorting by income -->
-            <select class="form-control" id="sortByIncome">
-              <option value="asc">Ascending</option>
-              <option value="desc">Descending</option>
-            </select>
-          </div>
+         
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Sort Jobs </button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sortData(event)">Sort Jobs </button>
           </div>
         </div>
       </div>
@@ -147,6 +144,7 @@
           .then((y) => y.json())
           .then((y) => {
             a = y;
+            console.log(y)
             display(y);
           });
       };
@@ -219,8 +217,91 @@
           });
       };
 
+      window.addEventListener('click',function(e){
+        console.log(e.target);
+      })
+     
+    function sortData(){
+      let sorting = document.getElementById('sortBy').value
+      
+      
+      
+      
+      
+      
+      if(sorting=='d_desc'){
+        let d_d = a.sort((b,c)=>{
+        return c.duration - b.duration
+      })
+      display(d_d)
+    }
+    if(sorting=='d_asc'){
+      let d_a = a.sort((b,c)=>{
+        return b.duration - c.duration
+      })
+      display(d_a)
+    }
+    if(sorting=='i_desc'){
+      let i_d = a.sort((b,c)=>{
+        return c.salary - a.salary
+      })
+      display(i_d)
+    }
+    if(sorting=='i_asc'){
+      let i_a = a.sort((b,c)=>{
+        return b.salary - c.salary
+      })
+      display(i_a);
+      
+    }
+    }
 
+      // const sortData = (e) => {
+      //       e.preventDefault();
 
+      //       let baseUrl = "http://localhost:4444/api/jobs?myjobs=1&";
+
+      
+            
+            // a.sort(function (a1,b1) {
+            //   console.log(a1,b1);
+            //   if (durationSort == "desc") 
+            //   { b1.duration < a1.duration
+            //     return 1
+            //   }
+
+            //   // if (incomeSort=='desc'){
+            //   //   b1.salary - a1.salary
+            //   //   display(a);
+            //   // } 
+            //   // if (incomeSort=='asc'){
+            //   //   a1.salary - b1.salary
+            //   // }
+            //   else return a1.duration - b1.duration;
+            // });
+
+            // if (jdurationSort==='') {
+            //     baseUrl += ("jobType=" + jobType1.value + "&")
+            //     console.log(baseUrl)
+             //  }
+            
+        
+        // fetch(baseUrl, {
+        //   method: "GET",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     'Authorization': `Bearer ${t}`,
+        //   },
+        // })
+        //   .then((y) => y.json())
+        //   .then((y) => {
+        //     a = y;
+        //     display(a);
+        //   });
+      
+            
+        // }
+        
       const filterData = (e) => {
             e.preventDefault();
 
@@ -261,6 +342,19 @@
       
             
         }
+        
+        
+
+        function searchValue() {
+            let searchTerm = document.getElementById("searchTerm").value.toLowerCase();
+
+            let p = a.filter(function (v) {
+              return v.title.toLowerCase().includes(searchTerm);
+            });
+
+            display(p);
+
+}
     </script>
     
 </body>

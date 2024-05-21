@@ -45,7 +45,9 @@
 </nav>
     
     <div class="search-container">
-      <input type="search" placeholder="Search Jobs" />
+      <input id="searchTerm" placeholder="Search Jobs ">
+      <button type="button" class="btn btn-primary" onclick="searchValue()">Search</button> 
+    
       <button type="button" class="btn btn-primary" data-toggle="modal" id="sortmodalbutton" data-target="#SortModal">
           Sort By
       </button>
@@ -325,6 +327,18 @@
             window.location.href = "myjobs.html";
           });
       };
+
+      
+      function searchValue() {
+            let searchTerm = document.getElementById("searchTerm").value.toLowerCase();
+
+            let p = a.filter(function (v) {
+              return v.title.toLowerCase().includes(searchTerm);
+            });
+
+            display(p);
+          }
+
 
 
       const filterData = (e) => {
